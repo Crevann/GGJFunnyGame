@@ -15,6 +15,10 @@ run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://game.gd"
+
 [filesystem]
 
 import/blender/enabled=false
@@ -58,6 +62,7 @@ attack={
 2d_physics/layer_1="Default"
 2d_physics/layer_2="Hit"
 2d_physics/layer_3="Hurt"
+2d_physics/layer_4="Walls"
 
 [rendering]
 

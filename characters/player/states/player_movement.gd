@@ -1,6 +1,11 @@
 extends PlayerState
 
 func state_process(_delta: float):
+	if(player.velocity == Vector2.ZERO):
+		animation.play("Idle")
+	else:
+		animation.play("Walk")
+	
 	if(Input.get_axis("move_left", "move_right") < 0):
 		player.facing = player.LEFT
 	elif(Input.get_axis("move_left", "move_right") > 0):
@@ -14,10 +19,5 @@ func state_physics_process(_delta: float):
 	if move_direction:
 		player.velocity = move_direction * player.SPEED
 	else:
-		player.velocity = lerp(player.velocity, Vector2.ZERO, player.DECELLARATION)
+		player.velocity = Vector2.ZERO
 
-func state_enter():
-	pass
-
-func state_exit():
-	pass

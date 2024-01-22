@@ -7,6 +7,7 @@ func state_physics_process(_delta: float):
 		
 
 func state_enter():
+	super()
 	timer.start()
 	var dash_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = dash_direction * player.DASH_SPEED
