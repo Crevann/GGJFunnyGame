@@ -1,14 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=3 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="Texture2D" uid="uid://lgvl0t676v6u" path="res://icon.svg" id="1_fr4hw"]
+[ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_nw3lk")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Enviroment" type="Node2D" parent="."]
 
 [node name="Floor" type="Sprite2D" parent="Enviroment"]
-z_index = -1
+z_index = -4096
 scale = Vector2(5.98303, 5.76)
 texture = ExtResource("1_fr4hw")
