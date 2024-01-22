@@ -6,7 +6,8 @@ func state_process(_delta: float):
 	elif(Input.get_axis("move_left", "move_right") > 0):
 		player.facing = player.RIGHT
 	$"../../Flip".scale.x = player.facing if player.facing != player.NEUTRAL else player.facing
-	pass
+	if(Input.is_action_just_pressed("attack")):
+		emit_signal("transition", "Attack")
 	
 func state_physics_process(_delta: float):
 	var move_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

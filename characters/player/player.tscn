@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="1_ocqab"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_hnrsw"]
 [ext_resource type="Script" path="res://characters/player/states/player_movement.gd" id="4_u4t56"]
-[ext_resource type="Script" path="res://characters/player/states/player_state.gd" id="5_d81n1"]
+[ext_resource type="Script" path="res://characters/player/states/player_attack.gd" id="5_0g7bs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
 animations = [{
@@ -21,6 +21,8 @@ animations = [{
 size = Vector2(95, 116)
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, -57)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_d18ec")
@@ -44,4 +46,10 @@ starting_state = NodePath("Movement")
 script = ExtResource("4_u4t56")
 
 [node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("5_d81n1")
+script = ExtResource("5_0g7bs")
+
+[node name="DashTimer" type="Timer" parent="StateMachine/Attack"]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="StateMachine/Attack/DashTimer" to="StateMachine/Attack" method="_on_dash_timer_timeout"]
