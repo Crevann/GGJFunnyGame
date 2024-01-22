@@ -11,5 +11,5 @@ const DASH_SPEED = 1800.0
 var facing := RIGHT
 var berk_value = 0 #max 100
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()

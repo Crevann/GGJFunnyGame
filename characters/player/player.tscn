@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx1djja02jtll"]
+[gd_scene load_steps=10 format=3 uid="uid://cx1djja02jtll"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_d18ec"]
 [ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="1_ocqab"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_hnrsw"]
+[ext_resource type="Script" path="res://logic/hit_detection/hitbox.gd" id="3_j702u"]
 [ext_resource type="Script" path="res://characters/player/states/player_movement.gd" id="4_u4t56"]
 [ext_resource type="Script" path="res://characters/player/states/player_attack.gd" id="5_0g7bs"]
 
@@ -17,8 +18,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcn8j"]
+size = Vector2(83, 81)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nw2fq"]
-size = Vector2(95, 116)
+size = Vector2(82, 17)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -32,10 +36,22 @@ script = ExtResource("1_d18ec")
 [node name="Protagonist" type="AnimatedSprite2D" parent="Flip"]
 sprite_frames = SubResource("SpriteFrames_c7j80")
 
+[node name="Hitbox" type="Area2D" parent="Flip"]
+collision_layer = 2
+collision_mask = 4
+input_pickable = false
+script = ExtResource("3_j702u")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hitbox"]
+position = Vector2(83, 0)
+shape = SubResource("RectangleShape2D_tcn8j")
+debug_color = Color(0.980392, 0, 0, 0.419608)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -1)
+position = Vector2(6, 48.5)
 shape = SubResource("RectangleShape2D_nw2fq")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]

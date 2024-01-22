@@ -53,6 +53,12 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Default"
+2d_physics/layer_2="Hit"
+2d_physics/layer_3="Hurt"
+
 [rendering]
 
 renderer/rendering_method="mobile"
