@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bthd4sme5od7a"]
+
+[ext_resource type="Texture2D" uid="uid://lgvl0t676v6u" path="res://icon.svg" id="1_fr4hw"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Enviroment" type="Node2D" parent="."]
+
+[node name="Floor" type="Sprite2D" parent="Enviroment"]
+z_index = -1
+scale = Vector2(5.98303, 5.76)
+texture = ExtResource("1_fr4hw")
