@@ -1,13 +1,36 @@
-[gd_scene load_steps=17 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=22 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
-[ext_resource type="Texture2D" uid="uid://k4bs4jv6alol" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_vbmiw"]
+[ext_resource type="Texture2D" uid="uid://cv134d7i4ap32" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_vbmiw"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
-[ext_resource type="Texture2D" uid="uid://b5ohbb0q7uf1y" path="res://sprites/enemy/enemy_idle/enemy_idle2.png" id="3_phsqk"]
+[ext_resource type="Texture2D" uid="uid://by7fgp84j7vwf" path="res://sprites/enemy/enemy_idle/enemy_idle2.png" id="3_phsqk"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
 [ext_resource type="Texture2D" uid="uid://su5fl0b8y2mv" path="res://sprites/enemy/enemy_run/enemy_run_0.png" id="4_vwdlq"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_panic.gd" id="5_467qv"]
 [ext_resource type="Texture2D" uid="uid://m2djar8l6s3e" path="res://sprites/enemy/enemy_run/enemy_run_1.png" id="5_t2ouk"]
+[ext_resource type="Texture2D" uid="uid://dos0gxxru406v" path="res://sprites/enemy/enemy_stagger/enemy_stagger.png" id="6_u5tq3"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_stagger.gd" id="10_p8vnk"]
+
+[sub_resource type="Shader" id="Shader_dmjlb"]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+	return start + (end - start) * delta;
+}
+
+void fragment(){
+	vec4 origin = texture(TEXTURE, UV);
+	COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+	COLOR.a = origin.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvioa"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dmjlb")
+shader_parameter/white_progress = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
 animations = [{
@@ -31,6 +54,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_u5tq3")
+}],
+"loop": true,
+"name": &"Stagger",
 "speed": 5.0
 }]
 
@@ -155,6 +186,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Flip/Enemy:material:shader_parameter/white_progress")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_tmr6m"]
 resource_name = "Walk"
@@ -188,11 +231,64 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_p3vg7"]
 resource_name = "Dead"
 
+[sub_resource type="Animation" id="Animation_y4rmu"]
+resource_name = "Stagger"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flip/Enemy:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Stagger"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flip/Enemy:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flip/Enemy:material:shader_parameter/white_progress")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ll0e4"]
 _data = {
 "Dead": SubResource("Animation_p3vg7"),
 "Idle": SubResource("Animation_6hn0o"),
 "RESET": SubResource("Animation_53wg6"),
+"Stagger": SubResource("Animation_y4rmu"),
 "Walk": SubResource("Animation_tmr6m")
 }
 
@@ -208,6 +304,7 @@ script = ExtResource("1_baok1")
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="Enemy" type="AnimatedSprite2D" parent="Flip"]
+material = SubResource("ShaderMaterial_vvioa")
 position = Vector2(0, -36)
 sprite_frames = SubResource("SpriteFrames_c7j80")
 animation = &"Idle"
@@ -221,7 +318,7 @@ script = ExtResource("3_n4joy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtbox"]
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_unsea")
-debug_color = Color(0, 0.501961, 1, 0.419608)
+debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48.5)
@@ -239,4 +336,12 @@ starting_state = NodePath("Panic")
 [node name="Panic" type="Node" parent="StateMachine"]
 script = ExtResource("5_467qv")
 
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource("10_p8vnk")
+animation_name = "Stagger"
+
+[node name="StaggerTimer" type="Timer" parent="StateMachine/Stagger"]
+wait_time = 0.2
+
 [connection signal="hit" from="Flip/Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="timeout" from="StateMachine/Stagger/StaggerTimer" to="StateMachine/Stagger" method="_on_stagger_timer_timeout"]
