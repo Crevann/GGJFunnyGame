@@ -24,7 +24,7 @@ one_shot = true
 [node name="YSortables" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" parent="YSortables" instance=ExtResource("1_nw3lk")]
+[node name="Player" parent="YSortables" groups=["player"] instance=ExtResource("1_nw3lk")]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSortables/Player"]
 remote_path = NodePath("../../../Camera2D")

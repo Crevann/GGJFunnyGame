@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=14 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
 [ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="2_c43cy"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
-[ext_resource type="Script" path="res://state.gd" id="5_y2ft2"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_state.gd" id="5_4jsyi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
 animations = [{
@@ -53,6 +53,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flip/Enemy:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flip/Enemy:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_tmr6m"]
 resource_name = "Walk"
@@ -71,8 +107,60 @@ tracks/0/keys = {
 "values": [0.0, 0.120428, 0.0, -0.122173, -1.22339e-05]
 }
 
+[sub_resource type="Animation" id="Animation_p3vg7"]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flip/Enemy:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.3631]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flip/Enemy:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 29)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flip/Enemy:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ll0e4"]
 _data = {
+"Dead": SubResource("Animation_p3vg7"),
 "Idle": SubResource("Animation_6hn0o"),
 "RESET": SubResource("Animation_53wg6"),
 "Walk": SubResource("Animation_tmr6m")
@@ -91,7 +179,6 @@ script = ExtResource("1_baok1")
 
 [node name="Enemy" type="AnimatedSprite2D" parent="Flip"]
 modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.922382, 0.900078)
 sprite_frames = SubResource("SpriteFrames_c7j80")
 
 [node name="Hurtbox" type="Area2D" parent="Flip"]
@@ -118,6 +205,6 @@ script = ExtResource("4_mskf1")
 starting_state = NodePath("Panic")
 
 [node name="Panic" type="Node" parent="StateMachine"]
-script = ExtResource("5_y2ft2")
+script = ExtResource("5_4jsyi")
 
 [connection signal="hit" from="Flip/Hurtbox" to="." method="_on_hurtbox_hit"]
