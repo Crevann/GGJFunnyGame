@@ -4,7 +4,7 @@ class_name Enemy
 @onready var camera := $"../../Camera2D"
 @onready var player: Player
 
-const SPEED = 300.0
+const SPEED = 200.0
 const KNOCKBACK = 1200.0
 var hp
 
