@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="2_c43cy"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
-[ext_resource type="Script" path="res://characters/enemy/states/enemy_state.gd" id="5_4jsyi"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_panic.gd" id="5_467qv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
 animations = [{
@@ -205,6 +205,6 @@ script = ExtResource("4_mskf1")
 starting_state = NodePath("Panic")
 
 [node name="Panic" type="Node" parent="StateMachine"]
-script = ExtResource("5_4jsyi")
+script = ExtResource("5_467qv")
 
 [connection signal="hit" from="Flip/Hurtbox" to="." method="_on_hurtbox_hit"]
