@@ -1,19 +1,36 @@
-[gd_scene load_steps=14 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=17 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
-[ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="2_c43cy"]
+[ext_resource type="Texture2D" uid="uid://k4bs4jv6alol" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_vbmiw"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
+[ext_resource type="Texture2D" uid="uid://b5ohbb0q7uf1y" path="res://sprites/enemy/enemy_idle/enemy_idle2.png" id="3_phsqk"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
+[ext_resource type="Texture2D" uid="uid://su5fl0b8y2mv" path="res://sprites/enemy/enemy_run/enemy_run_0.png" id="4_vwdlq"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_panic.gd" id="5_467qv"]
+[ext_resource type="Texture2D" uid="uid://m2djar8l6s3e" path="res://sprites/enemy/enemy_run/enemy_run_1.png" id="5_t2ouk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_c43cy")
+"texture": ExtResource("2_vbmiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_phsqk")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vwdlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t2ouk")
+}],
+"loop": true,
+"name": &"Run",
 "speed": 5.0
 }]
 
@@ -25,18 +42,31 @@ size = Vector2(80, 17)
 
 [sub_resource type="Animation" id="Animation_6hn0o"]
 resource_name = "Idle"
-length = 0.10001
+length = 0.40001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Flip/Enemy:rotation")
+tracks/0/path = NodePath("Flip/Enemy:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flip/Enemy:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_53wg6"]
@@ -44,38 +74,38 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Flip/Enemy:rotation")
+tracks/0/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Flip/Enemy:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(0, -36)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Flip/Enemy:position")
+tracks/2/path = NodePath("Flip/Enemy:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -89,6 +119,42 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Flip/Enemy:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Flip/Enemy:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Flip/Enemy:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_tmr6m"]
 resource_name = "Walk"
@@ -97,66 +163,30 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Flip/Enemy:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.120428, 0.0, -0.122173, -1.22339e-05]
-}
-
-[sub_resource type="Animation" id="Animation_p3vg7"]
-resource_name = "Dead"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
+tracks/0/path = NodePath("Flip/Enemy:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [&"Run"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Flip/Enemy:rotation")
+tracks/1/path = NodePath("Flip/Enemy:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.3631]
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Flip/Enemy:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-6, 29)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Flip/Enemy:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, 1)]
-}
+
+[sub_resource type="Animation" id="Animation_p3vg7"]
+resource_name = "Dead"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ll0e4"]
 _data = {
@@ -178,10 +208,12 @@ script = ExtResource("1_baok1")
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="Enemy" type="AnimatedSprite2D" parent="Flip"]
-modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -36)
 sprite_frames = SubResource("SpriteFrames_c7j80")
+animation = &"Idle"
 
 [node name="Hurtbox" type="Area2D" parent="Flip"]
+position = Vector2(2, 0)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_n4joy")

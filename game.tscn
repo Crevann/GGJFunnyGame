@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bthd4sme5od7a"]
 
-[ext_resource type="Texture2D" uid="uid://lgvl0t676v6u" path="res://icon.svg" id="1_fr4hw"]
 [ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="1_ig2ny"]
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="Script" path="res://camera.gd" id="1_ye6ox"]
 [ext_resource type="PackedScene" uid="uid://css4dbko0a408" path="res://characters/enemy/enemy.tscn" id="3_mef0r"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="4_1u18l"]
+[ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osct6"]
 size = Vector2(90, 114)
@@ -50,7 +50,6 @@ debug_color = Color(0, 0, 1, 0.419608)
 
 [node name="Floor" type="Sprite2D" parent="Enviroment"]
 z_index = -4096
-scale = Vector2(5.98303, 5.76)
-texture = ExtResource("1_fr4hw")
+texture = ExtResource("6_ewjuq")
 
 [connection signal="hit" from="YSortables/HurtboxTest/Hurtbox" to="YSortables/HurtboxTest" method="_on_hurtbox_hit"]
