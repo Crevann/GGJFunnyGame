@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=23 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
 [ext_resource type="Texture2D" uid="uid://cv134d7i4ap32" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_vbmiw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://m2djar8l6s3e" path="res://sprites/enemy/enemy_run/enemy_run_1.png" id="5_t2ouk"]
 [ext_resource type="Texture2D" uid="uid://dos0gxxru406v" path="res://sprites/enemy/enemy_stagger/enemy_stagger.png" id="6_u5tq3"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_stagger.gd" id="10_p8vnk"]
+[ext_resource type="Script" path="res://characters/enemy/states/enemy_dead.gd" id="11_n2pg3"]
 
 [sub_resource type="Shader" id="Shader_dmjlb"]
 code = "shader_type canvas_item;
@@ -34,6 +35,14 @@ shader_parameter/white_progress = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vbmiw")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_vbmiw")
@@ -70,6 +79,46 @@ size = Vector2(92, 105)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nw2fq"]
 size = Vector2(80, 17)
+
+[sub_resource type="Animation" id="Animation_p3vg7"]
+resource_name = "Dead"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flip/Enemy:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flip/Enemy:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flip/Hurtbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_6hn0o"]
 resource_name = "Idle"
@@ -199,38 +248,6 @@ tracks/7/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_tmr6m"]
-resource_name = "Walk"
-length = 0.40001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flip/Enemy:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Run"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Flip/Enemy:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_p3vg7"]
-resource_name = "Dead"
-
 [sub_resource type="Animation" id="Animation_y4rmu"]
 resource_name = "Stagger"
 length = 0.2
@@ -281,6 +298,35 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tmr6m"]
+resource_name = "Walk"
+length = 0.40001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flip/Enemy:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flip/Enemy:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ll0e4"]
@@ -343,5 +389,10 @@ animation_name = "Stagger"
 [node name="StaggerTimer" type="Timer" parent="StateMachine/Stagger"]
 wait_time = 0.2
 
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("11_n2pg3")
+animation_name = "Dead"
+
 [connection signal="hit" from="Flip/Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Dead" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StateMachine/Stagger/StaggerTimer" to="StateMachine/Stagger" method="_on_stagger_timer_timeout"]
