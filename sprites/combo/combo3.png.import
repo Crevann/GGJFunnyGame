@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnxik6vutkfqo"
-path="res://.godot/imported/protagonista_crumple2.png-5bf735bed44d456c2b288ec7c3b020a5.ctex"
+uid="uid://b0o5f3rfdx1jh"
+path="res://.godot/imported/combo3.png-408b3fc77a10aa3920592be4a0ce57bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/comico/takedowns/crumple/protagonista_crumple2.png"
-dest_files=["res://.godot/imported/protagonista_crumple2.png-5bf735bed44d456c2b288ec7c3b020a5.ctex"]
+source_file="res://sprites/combo/combo3.png"
+dest_files=["res://.godot/imported/combo3.png-408b3fc77a10aa3920592be4a0ce57bd.ctex"]
 
 [params]
 
