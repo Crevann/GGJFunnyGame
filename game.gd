@@ -1,7 +1,7 @@
 extends Node
 
 var total_points: int
-var current_combo: int = 1
+var current_combo: int = 0
 var max_combo: int = 4
 
 var combo_decay_timer: Timer
@@ -17,7 +17,7 @@ func _ready():
 	add_child(combo_decay_timer)
 
 func _process(_delta):
-	current_combo = clamp(current_combo, 1, max_combo)
+	current_combo = clamp(current_combo, 0, max_combo)
 
 func add_points(new_points):
 	total_points += new_points * current_combo
@@ -28,4 +28,5 @@ func hit_stop(timescale, duration):
 	Engine.time_scale = 1
 
 func combo_decay():
-	current_combo -= 1
+	if(current_combo > 0):
+		current_combo -= 1

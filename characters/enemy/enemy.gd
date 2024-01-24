@@ -7,6 +7,7 @@ signal has_died(points: int)
 @onready var player: Player
 
 @export var points = 100
+@export var berk_gain = 3
 const SPEED = 200.0
 const KNOCKBACK = 1200.0
 var hp : int
@@ -21,11 +22,12 @@ func _process(_delta):
 	if(hp <= 0 and !dead):
 		var state : State = $StateMachine.current_state
 		state.emit_signal("transition", "Dead")
+		if(Game.current_combo < Game.max_combo):
+			Game.current_combo += 1
 		Game.add_points(points)
-		Game.current_combo += 1
 		Game.combo_decay_timer.start()
-		print(Game.total_points)
-		print(Game.current_combo)
+		if(player.berk_value < 100):
+			player.berk_value += berk_gain
 
 func _physics_process(_delta):
 	move_and_slide()
