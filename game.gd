@@ -7,6 +7,9 @@ var max_combo: int = 4
 var combo_decay_timer: Timer
 var combo_decay_time: float = 2.0
 
+var game_timer: Timer
+var game_time: float = 60.0
+
 func _ready():
 	total_points = 0
 	
