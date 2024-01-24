@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hp8p08xqhmr8"
-path="res://.godot/imported/protagonista_slap2.png-63b9c27e396859b1340acbdcc51c8e9a.ctex"
+uid="uid://bss4ujow47ldw"
+path="res://.godot/imported/cornice.png-1eb45f0e06db591c847e980020769f17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/comico/slap/protagonista_slap2.png"
-dest_files=["res://.godot/imported/protagonista_slap2.png-63b9c27e396859b1340acbdcc51c8e9a.ctex"]
+source_file="res://logic/ui/ui_sprites/cornice.png"
+dest_files=["res://.godot/imported/cornice.png-1eb45f0e06db591c847e980020769f17.ctex"]
 
 [params]
 
