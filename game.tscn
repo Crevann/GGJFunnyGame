@@ -1,19 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=13 format=3 uid="uid://bthd4sme5od7a"]
 
-[ext_resource type="Texture2D" uid="uid://lgvl0t676v6u" path="res://icon.svg" id="1_fr4hw"]
-[ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="1_ig2ny"]
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
+[ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
 [ext_resource type="Script" path="res://camera.gd" id="1_ye6ox"]
 [ext_resource type="PackedScene" uid="uid://css4dbko0a408" path="res://characters/enemy/enemy.tscn" id="3_mef0r"]
-[ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="4_1u18l"]
+[ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_osct6"]
-size = Vector2(90, 114)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6cvuo"]
+b = Vector2(2025, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_qdwvf"]
+b = Vector2(-461, 864)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x3tec"]
+a = Vector2(2983, 0)
+b = Vector2(0, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xej8q"]
+b = Vector2(495, 866)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j20mv"]
+size = Vector2(765, 104)
+
+[sub_resource type="Gradient" id="Gradient_knj1o"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3yvy8"]
+gradient = SubResource("Gradient_knj1o")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.85, 0.85)
 
 [node name="Game" type="Node2D"]
 
+[node name="UI" parent="." instance=ExtResource("1_v0yu5")]
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -57)
+position = Vector2(0, -151)
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("1_ye6ox")
@@ -25,6 +48,7 @@ one_shot = true
 y_sort_enabled = true
 
 [node name="Player" parent="YSortables" groups=["player"] instance=ExtResource("1_nw3lk")]
+position = Vector2(0, -151)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSortables/Player"]
 remote_path = NodePath("../../../Camera2D")
@@ -32,25 +56,69 @@ remote_path = NodePath("../../../Camera2D")
 [node name="Enemy" parent="YSortables" instance=ExtResource("3_mef0r")]
 position = Vector2(195, -57)
 
-[node name="HurtboxTest" type="Sprite2D" parent="YSortables"]
-texture = ExtResource("1_ig2ny")
+[node name="Enemy2" parent="YSortables" instance=ExtResource("3_mef0r")]
+position = Vector2(390, -114)
 
-[node name="Hurtbox" type="Area2D" parent="YSortables/HurtboxTest"]
-collision_layer = 4
-collision_mask = 2
-input_pickable = false
-script = ExtResource("4_1u18l")
+[node name="Enemy3" parent="YSortables" instance=ExtResource("3_mef0r")]
+position = Vector2(324, 26)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortables/HurtboxTest/Hurtbox"]
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_osct6")
-debug_color = Color(0, 0, 1, 0.419608)
+[node name="Enemy4" parent="YSortables" instance=ExtResource("3_mef0r")]
+position = Vector2(163, 66)
+
+[node name="Enemy5" parent="YSortables" instance=ExtResource("3_mef0r")]
+position = Vector2(314, 136)
+
+[node name="Enemy6" parent="YSortables" instance=ExtResource("3_mef0r")]
+position = Vector2(445, 13)
 
 [node name="Enviroment" type="Node2D" parent="."]
 
 [node name="Floor" type="Sprite2D" parent="Enviroment"]
 z_index = -4096
-scale = Vector2(5.98303, 5.76)
-texture = ExtResource("1_fr4hw")
+texture = ExtResource("6_ewjuq")
 
-[connection signal="hit" from="YSortables/HurtboxTest/Hurtbox" to="YSortables/HurtboxTest" method="_on_hurtbox_hit"]
+[node name="Boundaries" type="StaticBody2D" parent="Enviroment/Floor"]
+position = Vector2(-1012, -246)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="Enviroment/Floor/Boundaries"]
+shape = SubResource("SegmentShape2D_6cvuo")
+
+[node name="Left" type="CollisionShape2D" parent="Enviroment/Floor/Boundaries"]
+shape = SubResource("SegmentShape2D_qdwvf")
+
+[node name="Bottom" type="CollisionShape2D" parent="Enviroment/Floor/Boundaries"]
+position = Vector2(-461, 866)
+shape = SubResource("SegmentShape2D_x3tec")
+
+[node name="Right" type="CollisionShape2D" parent="Enviroment/Floor/Boundaries"]
+position = Vector2(2025, 0)
+shape = SubResource("SegmentShape2D_xej8q")
+
+[node name="Stage" type="StaticBody2D" parent="Enviroment"]
+position = Vector2(0, -247)
+collision_layer = 8
+collision_mask = 0
+
+[node name="Box" type="CollisionShape2D" parent="Enviroment/Stage"]
+position = Vector2(1.5, 53)
+shape = SubResource("RectangleShape2D_j20mv")
+
+[node name="Lights" type="DirectionalLight2D" parent="."]
+visible = false
+enabled = false
+color = Color(0.470588, 0.470588, 0.470588, 1)
+blend_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(19, -35)
+enabled = false
+texture = SubResource("GradientTexture2D_3yvy8")
+texture_scale = 15.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(-842, 308)
+enabled = false
+texture = SubResource("GradientTexture2D_3yvy8")
+texture_scale = 10.0
