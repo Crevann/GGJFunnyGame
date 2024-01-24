@@ -9,6 +9,7 @@ const DECELLARATION = 0.2
 const DASH_SPEED = 1800.0
 
 var facing := RIGHT
+var berking : bool
 var berk_value = 0 #max 100
 
 func _physics_process(_delta):

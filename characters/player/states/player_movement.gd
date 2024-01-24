@@ -17,7 +17,10 @@ func state_process(_delta: float):
 func state_physics_process(_delta: float):
 	var move_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if move_direction:
-		player.velocity = move_direction * player.SPEED
+		if player.berking:
+			player.velocity = move_direction * player.SPEED_BERK
+		else:
+			player.velocity = move_direction * player.SPEED
 	else:
 		player.velocity = Vector2.ZERO
 
