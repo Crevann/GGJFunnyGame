@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1f3sv88i4vjr"
-path="res://.godot/imported/ritratto_insano1.png-9a0f64f5e09aa9bd331b90fc7e08fcbd.ctex"
+uid="uid://c2n867kt7jlvq"
+path="res://.godot/imported/ritratto_insano3.png-fa6c4c5d615f387409430f3ae8a3ebf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logic/ui/ui_sprites/ritratto_insano1.png"
-dest_files=["res://.godot/imported/ritratto_insano1.png-9a0f64f5e09aa9bd331b90fc7e08fcbd.ctex"]
+source_file="res://logic/ui/ui_sprites/ritratto_insano3.png"
+dest_files=["res://.godot/imported/ritratto_insano3.png-fa6c4c5d615f387409430f3ae8a3ebf1.ctex"]
 
 [params]
 
