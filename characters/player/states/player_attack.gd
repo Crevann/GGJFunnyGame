@@ -25,9 +25,9 @@ func state_enter():
 	
 	var dash_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if(dash_direction.x > 0):
-		$"../../Flip".scale.x = 1
+		player.facing = player.RIGHT
 	elif(dash_direction.x < 0):
-		$"../../Flip".scale.x = -1
+		player.facing = player.LEFT
 	player.velocity = dash_direction * player.DASH_SPEED
 	if(dash_direction == Vector2.ZERO):
 		player.velocity.x = player.facing * player.DASH_SPEED

@@ -10,7 +10,6 @@ func state_process(_delta: float):
 		player.facing = player.LEFT
 	elif(Input.get_axis("move_left", "move_right") > 0):
 		player.facing = player.RIGHT
-	$"../../Flip".scale.x = player.facing if player.facing != player.NEUTRAL else player.facing
 	if(Input.is_action_just_pressed("attack")):
 		emit_signal("transition", "Attack")
 	

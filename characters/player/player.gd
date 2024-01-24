@@ -13,6 +13,7 @@ var berking : bool
 var berk_value = 0 #max 100
 
 func _process(_delta):
+	$Flip.scale.x = facing if facing != NEUTRAL else facing
 	if(berk_value >= 100):
 		berking = true
 		$Flip/Hitbox.damage = 2
