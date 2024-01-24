@@ -16,7 +16,7 @@ func _ready():
 	combo_decay_timer.connect("timeout", combo_decay)
 	add_child(combo_decay_timer)
 
-func _process(delta):
+func _process(_delta):
 	current_combo = clamp(current_combo, 1, max_combo)
 
 func add_points(new_points):
