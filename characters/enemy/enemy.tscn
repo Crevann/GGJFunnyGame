@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=25 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
 [ext_resource type="Texture2D" uid="uid://cv134d7i4ap32" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_vbmiw"]
+[ext_resource type="Texture2D" uid="uid://bjcwvwkeqkru1" path="res://sprites/enemy/enemy_dead/enemy_dead.png" id="2_x7wc2"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
 [ext_resource type="Texture2D" uid="uid://by7fgp84j7vwf" path="res://sprites/enemy/enemy_idle/enemy_idle2.png" id="3_phsqk"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_panic.gd" id="5_467qv"]
 [ext_resource type="Texture2D" uid="uid://m2djar8l6s3e" path="res://sprites/enemy/enemy_run/enemy_run_1.png" id="5_t2ouk"]
 [ext_resource type="Texture2D" uid="uid://dos0gxxru406v" path="res://sprites/enemy/enemy_stagger/enemy_stagger.png" id="6_u5tq3"]
+[ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="9_vcwtl"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_stagger.gd" id="10_p8vnk"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_dead.gd" id="11_n2pg3"]
 
@@ -37,7 +39,7 @@ shader_parameter/white_progress = 0.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vbmiw")
+"texture": ExtResource("2_x7wc2")
 }],
 "loop": true,
 "name": &"Dead",
@@ -365,6 +367,11 @@ script = ExtResource("3_n4joy")
 position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_unsea")
 debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 53)
+texture = ExtResource("9_vcwtl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48.5)

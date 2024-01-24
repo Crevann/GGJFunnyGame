@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx1djja02jtll"]
+[gd_scene load_steps=16 format=3 uid="uid://cx1djja02jtll"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_d18ec"]
 [ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="1_ocqab"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_hnrsw"]
 [ext_resource type="Script" path="res://logic/hit_detection/hitbox.gd" id="3_j702u"]
+[ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="4_hh8ry"]
 [ext_resource type="Script" path="res://characters/player/states/player_movement.gd" id="4_u4t56"]
 [ext_resource type="Script" path="res://characters/player/states/player_attack.gd" id="5_0g7bs"]
 
@@ -134,6 +135,11 @@ position = Vector2(83, 0)
 shape = SubResource("RectangleShape2D_tcn8j")
 disabled = true
 debug_color = Color(0.980392, 0, 0, 0.419608)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 53)
+texture = ExtResource("4_hh8ry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 48.5)
