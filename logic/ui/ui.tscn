@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bo7k1cc6j2s0q"]
+[gd_scene load_steps=13 format=3 uid="uid://bo7k1cc6j2s0q"]
 
 [ext_resource type="FontFile" uid="uid://kqqjk2s1ju5v" path="res://fonts/Chomiqyfreeversion-Regular.ttf" id="1_ybpc5"]
 [ext_resource type="Texture2D" uid="uid://bss4ujow47ldw" path="res://logic/ui/ui_sprites/cornice.png" id="2_xefja"]
 [ext_resource type="Script" path="res://logic/ui/ui_portrait.gd" id="3_7dr1e"]
 [ext_resource type="Texture2D" uid="uid://souvtv5w7xpu" path="res://logic/ui/ui_sprites/background.png" id="3_124g1"]
 [ext_resource type="Texture2D" uid="uid://btk42xkqtowgi" path="res://logic/ui/ui_sprites/ritratto_normale1.png" id="4_ruo7h"]
-[ext_resource type="Texture2D" uid="uid://s5328bl6kvmu" path="res://logic/ui/ui_barra/barra_berk_ritratto.png" id="5_7a50a"]
-[ext_resource type="Texture2D" uid="uid://c8mb1rt7pr61n" path="res://logic/ui/ui_barra/barra_berk_tacche.png" id="6_4sm6h"]
+[ext_resource type="Texture2D" uid="uid://b6qdhpcpo4h0h" path="res://logic/ui/ui_barra/barra_berk_ritratto.png" id="5_7a50a"]
+[ext_resource type="Texture2D" uid="uid://cgk6y1jt5fwe1" path="res://logic/ui/ui_barra/barra_berk_background.png" id="7_an2du"]
 [ext_resource type="Texture2D" uid="uid://bkpqpgdco53vw" path="res://sprites/combo/combo1.png" id="7_tr0q6"]
+[ext_resource type="Texture2D" uid="uid://dvkl2dnyymqlu" path="res://logic/ui/ui_barra/barra_berk_outline.png" id="8_sv3uu"]
+[ext_resource type="Texture2D" uid="uid://buhva5ibydtuo" path="res://logic/ui/ui_barra/barra_berk_fill.png" id="9_jk3ik"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gekba"]
 font = ExtResource("1_ybpc5")
@@ -142,8 +144,10 @@ offset_right = 657.06
 offset_bottom = 142.984
 scale = Vector2(0.6, 0.6)
 step = 10.0
-value = 100.0
-texture_progress = ExtResource("6_4sm6h")
+value = 50.0
+texture_under = ExtResource("7_an2du")
+texture_over = ExtResource("8_sv3uu")
+texture_progress = ExtResource("9_jk3ik")
 
 [node name="Score" type="Label" parent="Bar"]
 layout_mode = 1
