@@ -21,7 +21,7 @@ func state_enter():
 	print(animation.current_animation)
 	
 	if(player.berking):
-		animation.speed_scale = 2
+		animation.speed_scale = 3
 	
 	var dash_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if(dash_direction.x > 0):
