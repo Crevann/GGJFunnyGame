@@ -332,7 +332,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_tmr6m"]
 resource_name = "Walk"
-length = 0.50001
+length = 0.60001
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
