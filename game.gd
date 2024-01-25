@@ -14,6 +14,7 @@ var combo_decay_time: float = 2.0
 var game_timer: Timer
 var game_time: float = 60.0
 
+var current_alive_enemies = 0
 var max_enemies_alive = 30
 
 func _ready():

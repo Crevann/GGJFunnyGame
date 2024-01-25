@@ -29,6 +29,7 @@ func _process(_delta):
 		Game.combo_decay_timer.start()
 		if(player.berk_value < 100):
 			player.berk_value += berk_gain
+		Game.current_alive_enemies -= 1
 
 func _physics_process(_delta):
 	move_and_slide()

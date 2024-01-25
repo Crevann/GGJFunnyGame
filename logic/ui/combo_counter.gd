@@ -4,6 +4,8 @@ extends Control
 @export var combo_scales = []
 @export var combo_number = []
 
+var score_to_display: int = 0
+
 func _ready():
 	$AnimationPlayer.play("Default")
 	Game.connect("points_added", show_points)
@@ -19,8 +21,10 @@ func _process(delta):
 
 func _on_disappear_timer_timeout():
 	$Points.visible = false
+	score_to_display = 0
 
 func show_points(points):
 	$Points/DisappearTimer.start()
+	score_to_display += points
 	$Points.visible = true
-	$Points.text = var_to_str(points)
+	$Points.text = var_to_str(score_to_display)

@@ -120,7 +120,13 @@ position = Vector2(1.5, 53)
 shape = SubResource("RectangleShape2D_j20mv")
 
 [node name="Spawner1" parent="." instance=ExtResource("6_n8ywu")]
-position = Vector2(-641, 0)
+position = Vector2(-832, 128)
+
+[node name="Spawner2" parent="." instance=ExtResource("6_n8ywu")]
+position = Vector2(832, 128)
+
+[node name="Spawner3" parent="." instance=ExtResource("6_n8ywu")]
+position = Vector2(2, 128)
 
 [node name="Lights" type="DirectionalLight2D" parent="."]
 visible = false
