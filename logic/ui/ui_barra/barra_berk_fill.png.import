@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8mb1rt7pr61n"
-path="res://.godot/imported/barra_berk_tacche.png-e226e81c5f817c3ba4e8c21159d15993.ctex"
+uid="uid://buhva5ibydtuo"
+path="res://.godot/imported/barra_berk_fill.png-1bdf8b8da791121b104fa68263c42f0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logic/ui/ui_barra/barra_berk_tacche.png"
-dest_files=["res://.godot/imported/barra_berk_tacche.png-e226e81c5f817c3ba4e8c21159d15993.ctex"]
+source_file="res://logic/ui/ui_barra/barra_berk_fill.png"
+dest_files=["res://.godot/imported/barra_berk_fill.png-1bdf8b8da791121b104fa68263c42f0c.ctex"]
 
 [params]
 

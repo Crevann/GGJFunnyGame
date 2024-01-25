@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6qdhpcpo4h0h"
-path="res://.godot/imported/barra_berk_ritratto.png-ffba1ef3f4e81da79b4a9643c01adf20.ctex"
+uid="uid://dvkl2dnyymqlu"
+path="res://.godot/imported/barra_berk_outline.png-070594ef5012f4429a569645aa35ae7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logic/ui/ui_barra/barra_berk_ritratto.png"
-dest_files=["res://.godot/imported/barra_berk_ritratto.png-ffba1ef3f4e81da79b4a9643c01adf20.ctex"]
+source_file="res://logic/ui/ui_barra/barra_berk_outline.png"
+dest_files=["res://.godot/imported/barra_berk_outline.png-070594ef5012f4429a569645aa35ae7c.ctex"]
 
 [params]
 
