@@ -7,7 +7,7 @@ signal has_died(points: int)
 @onready var player: Player
 
 @export var points = 100
-@export var berk_gain = 3
+@export var berk_gain = 20
 const SPEED = 200.0
 const KNOCKBACK = 1200.0
 var hp : int

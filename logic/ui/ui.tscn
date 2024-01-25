@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo7k1cc6j2s0q"]
+[gd_scene load_steps=11 format=3 uid="uid://bo7k1cc6j2s0q"]
 
 [ext_resource type="FontFile" uid="uid://kqqjk2s1ju5v" path="res://fonts/Chomiqyfreeversion-Regular.ttf" id="1_ybpc5"]
 [ext_resource type="Texture2D" uid="uid://bss4ujow47ldw" path="res://logic/ui/ui_sprites/cornice.png" id="2_xefja"]
+[ext_resource type="Script" path="res://logic/ui/ui_portrait.gd" id="3_7dr1e"]
 [ext_resource type="Texture2D" uid="uid://souvtv5w7xpu" path="res://logic/ui/ui_sprites/background.png" id="3_124g1"]
 [ext_resource type="Texture2D" uid="uid://btk42xkqtowgi" path="res://logic/ui/ui_sprites/ritratto_normale1.png" id="4_ruo7h"]
 [ext_resource type="Texture2D" uid="uid://s5328bl6kvmu" path="res://logic/ui/ui_barra/barra_berk_ritratto.png" id="5_7a50a"]
@@ -57,26 +58,51 @@ offset_bottom = 187.0
 grow_horizontal = 0
 texture = ExtResource("2_xefja")
 expand_mode = 1
+script = ExtResource("3_7dr1e")
+
+[node name="PortraitChangeTimer" type="Timer" parent="Bar/Portrait"]
+wait_time = 5.0
+autostart = true
+
+[node name="PortraitFlipTimer" type="Timer" parent="Bar/Portrait"]
+wait_time = 2.0
+autostart = true
 
 [node name="Background" type="TextureRect" parent="Bar/Portrait"]
+z_index = -1
+clip_contents = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.11739
+anchor_top = 0.112043
+anchor_right = 0.88261
+anchor_bottom = 0.887957
+offset_left = 0.0480003
+offset_top = 0.0480003
+offset_right = 2.952
+offset_bottom = 0.951996
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_124g1")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Face" type="TextureRect" parent="Bar/Portrait/Background"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.151
+anchor_top = -0.144
+anchor_right = 1.13
+anchor_bottom = 1.137
+offset_left = 0.0460014
+offset_top = 0.0240021
+offset_right = 0.0200043
+offset_bottom = -0.00201416
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ruo7h")
 expand_mode = 1
+stretch_mode = 4
 
 [node name="BerkBar" type="Control" parent="Bar"]
 layout_mode = 1
@@ -136,6 +162,7 @@ text = "00000"
 label_settings = SubResource("LabelSettings_gekba")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Bar"]
+visible = false
 modulate = Color(1, 1, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -162,3 +189,6 @@ stretch_mode = 4
 layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_d3dlq")
+
+[connection signal="timeout" from="Bar/Portrait/PortraitChangeTimer" to="Bar/Portrait" method="_on_portrait_change_timer_timeout"]
+[connection signal="timeout" from="Bar/Portrait/PortraitFlipTimer" to="Bar/Portrait" method="_on_portrait_flip_timer_timeout"]
