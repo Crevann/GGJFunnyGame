@@ -18,5 +18,5 @@ func _on_spawn_timer_timeout():
 	for i in burst_to_spawn:
 		var instance = enemy_to_spawn.instantiate()
 		instance.name = "Enemy"
-		instance.position = Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+		instance.position = position + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
 		$"../YSortables".add_child(instance)
