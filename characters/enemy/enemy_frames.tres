@@ -1,0 +1,49 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://5ca7lk3if7p2"]
+
+[ext_resource type="Texture2D" uid="uid://bjcwvwkeqkru1" path="res://sprites/enemy/enemy_dead/enemy_dead.png" id="1_02wuu"]
+[ext_resource type="Texture2D" uid="uid://cv134d7i4ap32" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_m71td"]
+[ext_resource type="Texture2D" uid="uid://by7fgp84j7vwf" path="res://sprites/enemy/enemy_idle/enemy_idle2.png" id="3_p65kl"]
+[ext_resource type="Texture2D" uid="uid://su5fl0b8y2mv" path="res://sprites/enemy/enemy_run/enemy_run_0.png" id="4_jsesg"]
+[ext_resource type="Texture2D" uid="uid://m2djar8l6s3e" path="res://sprites/enemy/enemy_run/enemy_run_1.png" id="5_llq04"]
+[ext_resource type="Texture2D" uid="uid://dos0gxxru406v" path="res://sprites/enemy/enemy_stagger/enemy_stagger.png" id="6_x7ire"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_02wuu")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m71td")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p65kl")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jsesg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_llq04")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x7ire")
+}],
+"loop": true,
+"name": &"Stagger",
+"speed": 5.0
+}]

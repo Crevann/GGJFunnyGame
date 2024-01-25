@@ -1,15 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=19 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
-[ext_resource type="Texture2D" uid="uid://cv134d7i4ap32" path="res://sprites/enemy/enemy_idle/enemy_idle1.png" id="2_vbmiw"]
-[ext_resource type="Texture2D" uid="uid://bjcwvwkeqkru1" path="res://sprites/enemy/enemy_dead/enemy_dead.png" id="2_x7wc2"]
+[ext_resource type="SpriteFrames" uid="uid://5ca7lk3if7p2" path="res://characters/enemy/enemy_frames.tres" id="2_wjy1t"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
-[ext_resource type="Texture2D" uid="uid://by7fgp84j7vwf" path="res://sprites/enemy/enemy_idle/enemy_idle2.png" id="3_phsqk"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
-[ext_resource type="Texture2D" uid="uid://su5fl0b8y2mv" path="res://sprites/enemy/enemy_run/enemy_run_0.png" id="4_vwdlq"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_panic.gd" id="5_467qv"]
-[ext_resource type="Texture2D" uid="uid://m2djar8l6s3e" path="res://sprites/enemy/enemy_run/enemy_run_1.png" id="5_t2ouk"]
-[ext_resource type="Texture2D" uid="uid://dos0gxxru406v" path="res://sprites/enemy/enemy_stagger/enemy_stagger.png" id="6_u5tq3"]
 [ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="9_vcwtl"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_stagger.gd" id="10_p8vnk"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_dead.gd" id="11_n2pg3"]
@@ -34,47 +29,6 @@ void fragment(){
 resource_local_to_scene = true
 shader = SubResource("Shader_dmjlb")
 shader_parameter/white_progress = 0.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_x7wc2")
-}],
-"loop": true,
-"name": &"Dead",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_vbmiw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_phsqk")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_vwdlq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_t2ouk")
-}],
-"loop": true,
-"name": &"Run",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_u5tq3")
-}],
-"loop": true,
-"name": &"Stagger",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unsea"]
 size = Vector2(92, 105)
@@ -354,7 +308,7 @@ script = ExtResource("1_baok1")
 [node name="Enemy" type="AnimatedSprite2D" parent="Flip"]
 material = SubResource("ShaderMaterial_vvioa")
 position = Vector2(0, -36)
-sprite_frames = SubResource("SpriteFrames_c7j80")
+sprite_frames = ExtResource("2_wjy1t")
 animation = &"Idle"
 
 [node name="Hurtbox" type="Area2D" parent="Flip"]

@@ -1,121 +1,12 @@
-[gd_scene load_steps=35 format=3 uid="uid://cx1djja02jtll"]
+[gd_scene load_steps=16 format=3 uid="uid://cx1djja02jtll"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_d18ec"]
+[ext_resource type="SpriteFrames" uid="uid://cnb1tv2uq0lpi" path="res://characters/player/player_frames.tres" id="2_dwqoi"]
 [ext_resource type="Script" path="res://state_machine.gd" id="2_hnrsw"]
-[ext_resource type="Texture2D" uid="uid://cd78as3do8raj" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple1.png" id="2_ndykr"]
-[ext_resource type="Texture2D" uid="uid://btxs0rwx2l40k" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple2.png" id="3_a4fmw"]
 [ext_resource type="Script" path="res://logic/hit_detection/hitbox.gd" id="3_j702u"]
-[ext_resource type="Texture2D" uid="uid://blhpu65voggdw" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple3.png" id="4_bkvxy"]
 [ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="4_hh8ry"]
 [ext_resource type="Script" path="res://characters/player/states/player_movement.gd" id="4_u4t56"]
 [ext_resource type="Script" path="res://characters/player/states/player_attack.gd" id="5_0g7bs"]
-[ext_resource type="Texture2D" uid="uid://cb1mjjndw8kr0" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple4.png" id="5_sk0vi"]
-[ext_resource type="Texture2D" uid="uid://ct72bq34oe3tu" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple5.png" id="6_4nkjl"]
-[ext_resource type="Texture2D" uid="uid://fhqh7qseay7w" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple6.png" id="7_387wm"]
-[ext_resource type="Texture2D" uid="uid://du1sebo6cli1e" path="res://sprites/comico/idle/protagonista_idle.png" id="8_xnqf7"]
-[ext_resource type="Texture2D" uid="uid://b2twoarf2j5cs" path="res://sprites/comico/slap/protagonista_slap1.png" id="9_b0cwe"]
-[ext_resource type="Texture2D" uid="uid://bg6b4gbeb3u8c" path="res://sprites/comico/slap/protagonista_slap5.png" id="9_etxuk"]
-[ext_resource type="Texture2D" uid="uid://hp8p08xqhmr8" path="res://sprites/comico/slap/protagonista_slap2.png" id="10_h0urh"]
-[ext_resource type="Texture2D" uid="uid://brf8mkncmraty" path="res://sprites/comico/slap/protagonista_slap6.png" id="10_yf2be"]
-[ext_resource type="Texture2D" uid="uid://bckur55fmwane" path="res://sprites/comico/walk/protagonista_walk1.png" id="11_ms5ap"]
-[ext_resource type="Texture2D" uid="uid://uphpwi2ogoa" path="res://sprites/comico/walk/protagonista_walk2.png" id="12_2rjoq"]
-[ext_resource type="Texture2D" uid="uid://cx0u3t6psglsp" path="res://sprites/comico/walk/protagonista_walk3.png" id="13_g20s1"]
-[ext_resource type="Texture2D" uid="uid://difk2rx4os6st" path="res://sprites/comico/slap/protagonista_slap3.png" id="13_pnb3g"]
-[ext_resource type="Texture2D" uid="uid://b0sns0ub4vqcc" path="res://sprites/comico/slap/protagonista_slap4.png" id="14_5qamx"]
-[ext_resource type="Texture2D" uid="uid://c6r3t0gb75qwb" path="res://sprites/comico/walk/protagonista_walk4.png" id="14_euqg8"]
-[ext_resource type="Texture2D" uid="uid://beb6ted3xvo7n" path="res://sprites/comico/walk/protagonista_walk5.png" id="15_ltfkb"]
-[ext_resource type="Texture2D" uid="uid://c75sechsqrwnj" path="res://sprites/comico/walk/protagonista_walk6.png" id="16_hki4x"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c7j80"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_ndykr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_a4fmw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_bkvxy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_sk0vi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_4nkjl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_387wm")
-}],
-"loop": true,
-"name": &"Crumble",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_xnqf7")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_etxuk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_yf2be")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_b0cwe")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_h0urh")
-}],
-"loop": true,
-"name": &"Slap_1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_h0urh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_pnb3g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_5qamx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_etxuk")
-}],
-"loop": true,
-"name": &"Slap_2",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_ms5ap")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_2rjoq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_g20s1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_euqg8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_ltfkb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_hki4x")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcn8j"]
 size = Vector2(130, 166)
@@ -382,7 +273,7 @@ script = ExtResource("1_d18ec")
 
 [node name="Protagonist" type="AnimatedSprite2D" parent="Flip"]
 position = Vector2(0, -37)
-sprite_frames = SubResource("SpriteFrames_c7j80")
+sprite_frames = ExtResource("2_dwqoi")
 animation = &"Idle"
 
 [node name="Hitbox" type="Area2D" parent="Flip"]
