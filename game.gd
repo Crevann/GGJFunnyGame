@@ -1,6 +1,7 @@
 extends Node
 
 signal finish()
+signal points_added(points: int)
 
 var total_points: int
 var current_combo: int = 0
@@ -21,7 +22,6 @@ func _ready():
 	combo_decay_timer.connect("timeout", combo_decay)
 	game_timer = Timer.new()
 	game_timer.wait_time = game_time
-	game_timer.autostart = true
 	game_timer.one_shot = true
 	game_timer.connect("timeout", end_game)
 	add_child(combo_decay_timer)
@@ -32,6 +32,7 @@ func _process(_delta):
 
 func add_points(new_points):
 	total_points += new_points * current_combo
+	emit_signal("points_added", new_points * current_combo)
 
 func hit_stop(timescale, duration):
 	Engine.time_scale = timescale

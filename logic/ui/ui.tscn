@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bo7k1cc6j2s0q"]
+[gd_scene load_steps=23 format=3 uid="uid://bo7k1cc6j2s0q"]
 
 [ext_resource type="FontFile" uid="uid://kqqjk2s1ju5v" path="res://fonts/Chomiqyfreeversion-Regular.ttf" id="1_ybpc5"]
 [ext_resource type="Script" path="res://logic/ui/game_time.gd" id="2_1cjxh"]
@@ -13,12 +13,65 @@
 [ext_resource type="Texture2D" uid="uid://buhva5ibydtuo" path="res://logic/ui/ui_barra/barra_berk_fill.png" id="9_jk3ik"]
 [ext_resource type="Script" path="res://logic/ui/score.gd" id="11_vjqfb"]
 [ext_resource type="Script" path="res://logic/ui/berk_bar.gd" id="11_w3n07"]
+[ext_resource type="Script" path="res://logic/ui/combo_counter.gd" id="13_xt1ql"]
+[ext_resource type="Texture2D" uid="uid://cbyxcjs1rv0h5" path="res://sprites/combo/combo2.png" id="15_yf54l"]
+[ext_resource type="Texture2D" uid="uid://cs7kvhvqcgfam" path="res://sprites/combo/combo3.png" id="16_51err"]
+[ext_resource type="Texture2D" uid="uid://boo6hkhc42yiv" path="res://sprites/combo/combo4.png" id="17_1uflv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gekba"]
 font = ExtResource("1_ybpc5")
 font_size = 64
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_onmyh"]
+resource_name = "Default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Combo:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.174533, 0.174533, -0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_d40je"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Combo:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.174533]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lyp5d"]
+_data = {
+"Default": SubResource("Animation_onmyh"),
+"RESET": SubResource("Animation_d40je")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_d3dlq"]
 font = ExtResource("1_ybpc5")
@@ -145,6 +198,7 @@ offset_left = 0.05793
 offset_right = 649.058
 offset_bottom = 215.0
 scale = Vector2(0.6, 0.6)
+value = 100.0
 texture_under = ExtResource("7_an2du")
 texture_over = ExtResource("8_sv3uu")
 texture_progress = ExtResource("9_jk3ik")
@@ -167,15 +221,13 @@ text = "00000"
 label_settings = SubResource("LabelSettings_gekba")
 script = ExtResource("11_vjqfb")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Bar"]
-visible = false
-modulate = Color(1, 1, 0, 1)
+[node name="Combo" type="Control" parent="Bar"]
+modulate = Color(0.278431, 0.737255, 0.2, 1)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.667498
-anchor_top = 1.15104
-anchor_right = 0.667498
-anchor_bottom = 1.15104
+anchor_left = 0.680798
+anchor_top = 1.06771
+anchor_right = 0.680798
+anchor_bottom = 1.06771
 offset_left = -67.0
 offset_top = -29.0
 offset_right = 67.0
@@ -183,18 +235,41 @@ offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(69, 28)
+script = ExtResource("13_xt1ql")
+combo_colors = [Color(0.278431, 0.737255, 0.2, 1), Color(0.666667, 0.737255, 0.2, 1), Color(0.737255, 0.392157, 0.2, 1), Color(0.737255, 0.2, 0.247059, 1)]
+combo_scales = [1.0, 1.2, 1.4, 1.8]
+combo_number = [ExtResource("7_tr0q6"), ExtResource("15_yf54l"), ExtResource("16_51err"), ExtResource("17_1uflv")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Combo" type="TextureRect" parent="Bar/HBoxContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bar/Combo"]
+libraries = {
+"": SubResource("AnimationLibrary_lyp5d")
+}
+
+[node name="Points" type="Label" parent="Bar/Combo"]
+visible = false
 layout_mode = 2
+offset_left = 62.0
+offset_right = 134.0
+offset_bottom = 58.0
+text = "100"
+label_settings = SubResource("LabelSettings_d3dlq")
+
+[node name="DisappearTimer" type="Timer" parent="Bar/Combo/Points"]
+wait_time = 1.5
+one_shot = true
+
+[node name="Combo" type="TextureRect" parent="Bar/Combo"]
+visible = false
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+rotation = -0.174533
+pivot_offset = Vector2(32, 32)
 texture = ExtResource("7_tr0q6")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Points" type="Label" parent="Bar/HBoxContainer"]
-layout_mode = 2
-text = "100"
-label_settings = SubResource("LabelSettings_d3dlq")
-
 [connection signal="timeout" from="Bar/Portrait/PortraitChangeTimer" to="Bar/Portrait" method="_on_portrait_change_timer_timeout"]
 [connection signal="timeout" from="Bar/Portrait/PortraitFlipTimer" to="Bar/Portrait" method="_on_portrait_flip_timer_timeout"]
+[connection signal="timeout" from="Bar/Combo/Points/DisappearTimer" to="Bar/Combo" method="_on_disappear_timer_timeout"]
