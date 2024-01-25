@@ -2,6 +2,7 @@ extends Node
 
 signal finish()
 signal points_added(points: int)
+signal go_berk()
 
 var total_points: int
 var current_combo: int = 0

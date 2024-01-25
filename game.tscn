@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=16 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
 [ext_resource type="Script" path="res://camera.gd" id="1_ye6ox"]
 [ext_resource type="PackedScene" uid="uid://css4dbko0a408" path="res://characters/enemy/enemy.tscn" id="3_mef0r"]
 [ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
+[ext_resource type="PackedScene" uid="uid://ldnj5jjy1leg" path="res://logic/spawner.tscn" id="6_n8ywu"]
 
 [sub_resource type="Gradient" id="Gradient_2gaia"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -135,3 +136,6 @@ position = Vector2(-842, 308)
 enabled = false
 texture = SubResource("GradientTexture2D_3yvy8")
 texture_scale = 10.0
+
+[node name="Spawner" parent="." instance=ExtResource("6_n8ywu")]
+position = Vector2(-641, 0)

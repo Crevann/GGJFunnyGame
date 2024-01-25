@@ -6,8 +6,8 @@ signal has_died(points: int)
 @onready var camera := $"../../Camera2D"
 @onready var player: Player
 
-@export var points = 100
-@export var berk_gain = 20
+@export var points = 50
+@export var berk_gain = 3
 const SPEED = 200.0
 const KNOCKBACK = 1200.0
 var hp : int
@@ -22,8 +22,9 @@ func _process(_delta):
 	if(hp <= 0 and !dead):
 		var state : State = $StateMachine.current_state
 		state.emit_signal("transition", "Dead")
-		if(Game.current_combo < Game.max_combo):
+		if(Game.current_combo < Game.max_combo and !player.combo_increased):
 			Game.current_combo += 1
+			player.combo_increased = true
 		Game.add_points(points)
 		Game.combo_decay_timer.start()
 		if(player.berk_value < 100):

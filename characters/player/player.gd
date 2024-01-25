@@ -9,13 +9,19 @@ const FRICTION = 0.2
 const DASH_SPEED = 1800.0
 
 var facing := RIGHT
+var combo_increased: bool
 var berking : bool
 var berk_value = 0 #max 100
 
+func _ready():
+	berking = false
+	berk_value = 0
+
 func _process(_delta):
 	$Flip.scale.x = facing if facing != NEUTRAL else facing
-	if(berk_value >= 100):
+	if(berk_value >= 100 and !berking):
 		berking = true
+		Game.emit_signal("go_berk")
 		$Flip/Hitbox.damage = 2
 
 func _physics_process(_delta):

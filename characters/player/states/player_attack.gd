@@ -16,6 +16,7 @@ func state_physics_process(_delta: float):
 		
 
 func state_enter():
+	player.combo_increased = false
 	current_attack += 1
 	animation.play(ATTACK_ANIMATIONS[current_attack % 2])
 	print(animation.current_animation)
