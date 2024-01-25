@@ -11,7 +11,6 @@ load("res://logic/ui/ui_sprites/ritratto_insano2.png"),
 load("res://logic/ui/ui_sprites/ritratto_insano3.png")]
 
 var portrait_to_show = 0 # 0 to 2
-var rng = RandomNumberGenerator.new()
 var shake = 25
 
 @onready var face := $Background/Face
@@ -36,7 +35,7 @@ func _process(_delta):
 		
 
 func _on_portrait_change_timer_timeout():
-	portrait_to_show = rng.randi_range(0, 2)
+	portrait_to_show = randi_range(0, 2)
 
 
 func _on_portrait_flip_timer_timeout():
