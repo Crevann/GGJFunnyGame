@@ -2,6 +2,9 @@ extends Node2D
 
 var has_to_start_game: bool
 
+func _ready():
+	Game.connect("finish", game_end)
+
 func _process(_delta):
 	if(Input.is_action_just_pressed("attack") and !has_to_start_game):
 		$AnimationPlayer.play("Intro")
@@ -9,4 +12,6 @@ func _process(_delta):
 
 func game_start():
 	Game.start_game()
-	
+
+func game_end():
+	$AnimationPlayer.play("Ending")

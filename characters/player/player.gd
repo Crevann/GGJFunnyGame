@@ -44,6 +44,7 @@ func end_game():
 	var state : State = $StateMachine.current_state
 	velocity = Vector2.ZERO
 	$AnimationPlayer.play("Idle")
+	$BerkLaughterSFX.stop()
 	state.emit_signal("transition", "Cutscene")
 
 func _physics_process(_delta):
