@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_stagger.gd" id="10_p8vnk"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_dead.gd" id="11_n2pg3"]
 
-[sub_resource type="Shader" id="Shader_dmjlb"]
+[sub_resource type="Shader" id="Shader_o78br"]
 code = "shader_type canvas_item;
 
 uniform float white_progress : hint_range(0,1) = 0;
@@ -28,7 +28,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vvioa"]
 resource_local_to_scene = true
-shader = SubResource("Shader_dmjlb")
+shader = SubResource("Shader_o78br")
 shader_parameter/white_progress = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unsea"]

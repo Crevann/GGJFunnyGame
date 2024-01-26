@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgyyv2s3ojt0q"]
+
+[ext_resource type="PackedScene" uid="uid://dsm44j0w7vfm2" path="res://characters/props/prop.tscn" id="1_grvsl"]
+[ext_resource type="Texture2D" uid="uid://dsclfdyorehby" path="res://sprites/props/tavolo.png" id="2_jgu3n"]
+
+[node name="Table" instance=ExtResource("1_grvsl")]
+position = Vector2(0, -48)
+
+[node name="Flip" parent="." index="0"]
+position = Vector2(0, 12)
+
+[node name="Sprite2D" parent="Flip" index="0"]
+position = Vector2(0, -19)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_jgu3n")
+
+[node name="Shadow" parent="." index="1"]
+position = Vector2(0, 59)
+
+[node name="Collision" parent="." index="3"]
+position = Vector2(0, 60)

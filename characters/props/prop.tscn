@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsm44j0w7vfm2"]
+
+[ext_resource type="Script" path="res://characters/props/prop.gd" id="1_1dwo8"]
+[ext_resource type="Texture2D" uid="uid://cx7ymqljeocke" path="res://sprites/props/sgabello.png" id="2_tr6d5"]
+[ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_e16no"]
+[ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="4_ghm46"]
+[ext_resource type="AudioStream" uid="uid://cgyoel6yw57i4" path="res://sfx/big_slap.ogg" id="5_s3amc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vovfo"]
+size = Vector2(64, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2erg2"]
+size = Vector2(60, 10)
+
+[node name="Prop" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 8
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_1dwo8")
+
+[node name="Flip" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Flip"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_tr6d5")
+
+[node name="Hurtbox" type="Area2D" parent="Flip"]
+position = Vector2(2, 0)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_e16no")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Hurtbox"]
+position = Vector2(-2, 10.5)
+shape = SubResource("RectangleShape2D_vovfo")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 53)
+texture = ExtResource("4_ghm46")
+
+[node name="PropSFXHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_s3amc")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 48)
+shape = SubResource("RectangleShape2D_2erg2")
+
+[connection signal="hit" from="Flip/Hurtbox" to="." method="_on_hurtbox_hit"]

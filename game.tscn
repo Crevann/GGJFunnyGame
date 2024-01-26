@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=32 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -13,7 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://chnhl8xiigv5e" path="res://sprites/controls/move2.png" id="8_kxrck"]
 [ext_resource type="LabelSettings" uid="uid://bb4i6v7udkj6q" path="res://logic/ui/text.tres" id="9_aa27t"]
 [ext_resource type="Texture2D" uid="uid://p3att4ydrgy" path="res://sprites/controls/attack1.png" id="9_i8uis"]
+[ext_resource type="PackedScene" uid="uid://css4dbko0a408" path="res://characters/enemy/enemy.tscn" id="9_t38tr"]
 [ext_resource type="Texture2D" uid="uid://dp17tyuu7c8f1" path="res://sprites/controls/attack2.png" id="10_em5d6"]
+[ext_resource type="PackedScene" uid="uid://i8o1o0mhdwod" path="res://characters/props/seat.tscn" id="15_prfvw"]
+[ext_resource type="PackedScene" uid="uid://dgyyv2s3ojt0q" path="res://characters/props/table.tscn" id="16_xrvjl"]
 
 [sub_resource type="Animation" id="Animation_vbr7g"]
 resource_name = "Intro"
@@ -409,6 +412,60 @@ y_sort_enabled = true
 position = Vector2(0, -328)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSortables/Player"]
+
+[node name="Seat" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(96, 192)
+
+[node name="Seat2" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(-88, 192)
+
+[node name="Seat3" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(-456, 160)
+
+[node name="Seat4" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(440, 160)
+
+[node name="Seat5" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(816, 280)
+
+[node name="Seat6" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(968, 320)
+
+[node name="Seat7" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(840, 360)
+
+[node name="Seat8" parent="YSortables" instance=ExtResource("15_prfvw")]
+position = Vector2(-944, 360)
+
+[node name="Table" parent="YSortables" instance=ExtResource("16_xrvjl")]
+position = Vector2(0, 184)
+
+[node name="Table2" parent="YSortables" instance=ExtResource("16_xrvjl")]
+position = Vector2(-392, 120)
+
+[node name="Table3" parent="YSortables" instance=ExtResource("16_xrvjl")]
+position = Vector2(360, 120)
+
+[node name="Table4" parent="YSortables" instance=ExtResource("16_xrvjl")]
+position = Vector2(896, 320)
+
+[node name="Table5" parent="YSortables" instance=ExtResource("16_xrvjl")]
+position = Vector2(-864, 320)
+
+[node name="Enemy" parent="YSortables" instance=ExtResource("9_t38tr")]
+position = Vector2(-80, 232)
+
+[node name="Enemy2" parent="YSortables" instance=ExtResource("9_t38tr")]
+position = Vector2(96, 229)
+
+[node name="Enemy3" parent="YSortables" instance=ExtResource("9_t38tr")]
+position = Vector2(-472, 144)
+
+[node name="Enemy4" parent="YSortables" instance=ExtResource("9_t38tr")]
+position = Vector2(400, 152)
+
+[node name="Enemy5" parent="YSortables" instance=ExtResource("9_t38tr")]
+position = Vector2(-848, 384)
 
 [node name="Enviroment" type="Node2D" parent="."]
 
