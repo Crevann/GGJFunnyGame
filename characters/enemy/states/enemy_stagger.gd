@@ -10,6 +10,10 @@ func state_enter():
 	super()
 	timer.start()
 	pass
+	
+func state_exit():
+	super()
+	$"../../Flip/Hurtbox/CollisionShape2D".disabled = false
 
 func _on_stagger_timer_timeout():
 	if(enabled):
