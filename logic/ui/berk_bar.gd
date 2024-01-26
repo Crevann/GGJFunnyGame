@@ -4,7 +4,7 @@ extends TextureProgressBar
 var shake = 10
 var update_step = 2
 
-func _process(delta):
+func _process(_delta):
 	if(value < player.berk_value):
 		value += update_step
 	

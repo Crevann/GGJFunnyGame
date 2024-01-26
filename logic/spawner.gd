@@ -11,14 +11,18 @@ var enabled: bool
 
 func _ready():
 	Game.connect("go_berk", berk_spawning)
+	Game.connect("finish", despawn)
 
 func berk_spawning():
 	timer.wait_time = berk_spawn
 	berking_mode = true
 	timer.start()
 
+func despawn():
+	queue_free()
+
 func _on_spawn_timer_timeout():
-	if(enabled):
+	if(enabled and Game.game_started):
 		for i in burst_to_spawn:
 			if(Game.current_alive_enemies < Game.max_enemies_alive):
 				var instance = enemy_to_spawn.instantiate()

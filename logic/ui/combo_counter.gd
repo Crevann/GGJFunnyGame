@@ -10,7 +10,7 @@ func _ready():
 	$AnimationPlayer.play("Default")
 	Game.connect("points_added", show_points)
 
-func _process(delta):
+func _process(_delta):
 	if(Game.current_combo > 0):
 		$Combo.visible = true
 		scale = Vector2(combo_scales[Game.current_combo - 1], combo_scales[Game.current_combo - 1])

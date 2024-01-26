@@ -1,5 +1,6 @@
 extends Node
 
+signal start()
 signal finish()
 signal points_added(points: int)
 signal go_berk()
@@ -7,6 +8,7 @@ signal go_berk()
 var total_points: int
 var current_combo: int = 0
 var max_combo: int = 4
+var game_started: bool
 
 var combo_decay_timer: Timer
 var combo_decay_time: float = 2.0
@@ -47,6 +49,14 @@ func combo_decay():
 	if(current_combo > 0):
 		current_combo -= 1
 
+func start_game():
+	print("Game has started")
+	game_started = true
+	game_timer.start()
+	emit_signal("start")
+	
+
 func end_game():
 	print("Game has finished")
+	game_started = false
 	emit_signal("finish")

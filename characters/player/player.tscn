@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cx1djja02jtll"]
+[gd_scene load_steps=17 format=3 uid="uid://cx1djja02jtll"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_d18ec"]
 [ext_resource type="SpriteFrames" uid="uid://cnb1tv2uq0lpi" path="res://characters/player/player_frames.tres" id="2_dwqoi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="4_hh8ry"]
 [ext_resource type="Script" path="res://characters/player/states/player_movement.gd" id="4_u4t56"]
 [ext_resource type="Script" path="res://characters/player/states/player_attack.gd" id="5_0g7bs"]
+[ext_resource type="Script" path="res://state.gd" id="6_ornco"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcn8j"]
 size = Vector2(130, 166)
@@ -305,7 +306,10 @@ libraries = {
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_hnrsw")
-starting_state = NodePath("Movement")
+starting_state = NodePath("Intro")
+
+[node name="Intro" type="Node" parent="StateMachine"]
+script = ExtResource("6_ornco")
 
 [node name="Movement" type="Node" parent="StateMachine"]
 script = ExtResource("4_u4t56")

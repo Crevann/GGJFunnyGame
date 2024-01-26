@@ -24,5 +24,9 @@ func _process(_delta):
 		Game.emit_signal("go_berk")
 		$Flip/Hitbox.damage = 2
 
+func enable_movement():
+	var state : State = $StateMachine.current_state
+	state.emit_signal("transition", "Movement")
+
 func _physics_process(_delta):
 	move_and_slide()

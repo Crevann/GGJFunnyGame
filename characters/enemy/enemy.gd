@@ -16,6 +16,7 @@ var dead : bool
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	add_to_group("enemies")
+	Game.connect("finish", on_game_end)
 	hp = 2
 
 func _process(_delta):
@@ -34,6 +35,9 @@ func _process(_delta):
 func _physics_process(_delta):
 	move_and_slide()
 
+func on_game_end():
+	var state : State = $StateMachine.current_state
+	state.emit_signal("transition", "Dead")
 
 func _on_hurtbox_hit(other):
 	var direction = global_position - other.global_position

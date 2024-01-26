@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://cnb1tv2uq0lpi"]
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://cnb1tv2uq0lpi"]
 
 [ext_resource type="Texture2D" uid="uid://cd78as3do8raj" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple1.png" id="1_0lmik"]
 [ext_resource type="Texture2D" uid="uid://btxs0rwx2l40k" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple2.png" id="2_7l2ua"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ct72bq34oe3tu" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple5.png" id="5_8sf6o"]
 [ext_resource type="Texture2D" uid="uid://fhqh7qseay7w" path="res://sprites/comico/takedowns/crumple/protagonista_takedown_crumple6.png" id="6_fljwy"]
 [ext_resource type="Texture2D" uid="uid://du1sebo6cli1e" path="res://sprites/comico/idle/protagonista_idle.png" id="7_3b1rm"]
+[ext_resource type="Texture2D" uid="uid://m5q3ek2ojyph" path="res://sprites/comico/jump/Salto.png" id="8_bji1n"]
 [ext_resource type="Texture2D" uid="uid://bg6b4gbeb3u8c" path="res://sprites/comico/slap/protagonista_slap5.png" id="8_th0hj"]
 [ext_resource type="Texture2D" uid="uid://brf8mkncmraty" path="res://sprites/comico/slap/protagonista_slap6.png" id="9_5g3bi"]
 [ext_resource type="Texture2D" uid="uid://b2twoarf2j5cs" path="res://sprites/comico/slap/protagonista_slap1.png" id="10_mtole"]
@@ -51,6 +52,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_bji1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_x78xi")
+}],
+"loop": true,
+"name": &"Jump",
 "speed": 5.0
 }, {
 "frames": [{
