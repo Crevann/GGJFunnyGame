@@ -16,6 +16,7 @@ var berk_value = 0 #max 100
 func _ready():
 	berking = false
 	berk_value = 0
+	Game.connect("finish", end_game)
 
 func _process(_delta):
 	$Flip.scale.x = facing if facing != NEUTRAL else facing
@@ -27,6 +28,14 @@ func _process(_delta):
 func enable_movement():
 	var state : State = $StateMachine.current_state
 	state.emit_signal("transition", "Movement")
+
+func end_game():
+	berk_value = 0
+	berking = false
+	var state : State = $StateMachine.current_state
+	velocity = Vector2.ZERO
+	$AnimationPlayer.play("Idle")
+	state.emit_signal("transition", "Cutscene")
 
 func _physics_process(_delta):
 	move_and_slide()

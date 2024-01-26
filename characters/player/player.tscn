@@ -306,9 +306,9 @@ libraries = {
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_hnrsw")
-starting_state = NodePath("Intro")
+starting_state = NodePath("Cutscene")
 
-[node name="Intro" type="Node" parent="StateMachine"]
+[node name="Cutscene" type="Node" parent="StateMachine"]
 script = ExtResource("6_ornco")
 
 [node name="Movement" type="Node" parent="StateMachine"]

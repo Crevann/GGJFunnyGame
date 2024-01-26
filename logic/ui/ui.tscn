@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bo7k1cc6j2s0q"]
+[gd_scene load_steps=25 format=3 uid="uid://bo7k1cc6j2s0q"]
 
 [ext_resource type="LabelSettings" uid="uid://cem0jj8d616hh" path="res://logic/ui/ui_text.tres" id="1_7upfh"]
 [ext_resource type="FontFile" uid="uid://kqqjk2s1ju5v" path="res://fonts/Chomiqyfreeversion-Regular.ttf" id="1_ybpc5"]
@@ -18,6 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://cbyxcjs1rv0h5" path="res://sprites/combo/combo2.png" id="15_yf54l"]
 [ext_resource type="Texture2D" uid="uid://cs7kvhvqcgfam" path="res://sprites/combo/combo3.png" id="16_51err"]
 [ext_resource type="Texture2D" uid="uid://boo6hkhc42yiv" path="res://sprites/combo/combo4.png" id="17_1uflv"]
+
+[sub_resource type="Gradient" id="Gradient_xwsoy"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 0.501961, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.501961)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j80sw"]
+gradient = SubResource("Gradient_xwsoy")
 
 [sub_resource type="Animation" id="Animation_onmyh"]
 resource_name = "Default"
@@ -75,6 +83,15 @@ outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
+
+[node name="BerkEffect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_j80sw")
 
 [node name="Time" type="Label" parent="."]
 anchors_preset = 5
