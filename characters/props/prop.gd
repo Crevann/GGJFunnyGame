@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @export var KNOCKBACK: float = 1000.0
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = lerp(velocity, Vector2.ZERO, 0.1)
 	move_and_slide()
 	
