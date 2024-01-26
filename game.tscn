@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=38 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://p3att4ydrgy" path="res://sprites/controls/attack1.png" id="9_i8uis"]
 [ext_resource type="PackedScene" uid="uid://css4dbko0a408" path="res://characters/enemy/enemy.tscn" id="9_t38tr"]
 [ext_resource type="Texture2D" uid="uid://dp17tyuu7c8f1" path="res://sprites/controls/attack2.png" id="10_em5d6"]
+[ext_resource type="Texture2D" uid="uid://cnxdvw4tw0088" path="res://sprites/props/jukebox.png" id="11_kunjp"]
 [ext_resource type="PackedScene" uid="uid://i8o1o0mhdwod" path="res://characters/props/seat.tscn" id="15_prfvw"]
 [ext_resource type="PackedScene" uid="uid://dgyyv2s3ojt0q" path="res://characters/props/table.tscn" id="16_xrvjl"]
 [ext_resource type="FontFile" uid="uid://dqvieq6dci2sl" path="res://fonts/YIKES.TTF" id="18_xw4tq"]
@@ -356,6 +357,9 @@ _data = {
 "RESET": SubResource("Animation_kab3p")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y51cn"]
+size = Vector2(144, 224)
+
 [sub_resource type="Gradient" id="Gradient_2gaia"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
@@ -487,6 +491,22 @@ position = Vector2(896, 320)
 
 [node name="Table5" parent="YSortables" instance=ExtResource("16_xrvjl")]
 position = Vector2(-864, 320)
+
+[node name="Jukebox" parent="YSortables" instance=ExtResource("16_xrvjl")]
+position = Vector2(-744, -264)
+
+[node name="Sprite2D" parent="YSortables/Jukebox/Flip" index="0"]
+position = Vector2(0, -52)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_kunjp")
+
+[node name="CollisionShape2D" parent="YSortables/Jukebox/Flip/Hurtbox" index="0"]
+position = Vector2(-2, -52)
+shape = SubResource("RectangleShape2D_y51cn")
+
+[node name="Shadow" parent="YSortables/Jukebox" index="1"]
+position = Vector2(0, 64)
+scale = Vector2(1.28, 1.28)
 
 [node name="Enemy" parent="YSortables" instance=ExtResource("9_t38tr")]
 position = Vector2(-80, 232)
@@ -627,3 +647,4 @@ blend_mode = 1
 texture = ExtResource("21_ccrp7")
 
 [editable path="YSortables/Player"]
+[editable path="YSortables/Jukebox"]
