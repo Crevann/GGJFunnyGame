@@ -6,6 +6,13 @@ signal has_died(points: int)
 @onready var camera := $"../../Camera2D"
 @onready var player: Player
 
+@onready var death_sfxs = [
+	load("res://sfx/bone_crack.ogg"),
+	load("res://sfx/bone_crack.ogg"),
+	load("res://sfx/cough.ogg"),
+	load("res://sfx/struggle.ogg")
+]
+
 @export var points = 50
 @export var berk_gain = 3
 const SPEED = 200.0
@@ -31,6 +38,9 @@ func _process(_delta):
 		if(player.berk_value < 100):
 			player.berk_value += berk_gain
 		Game.current_alive_enemies -= 1
+		$EnemySFX.stream = death_sfxs[randi_range(0, death_sfxs.size() - 1)]
+		$EnemySFX.pitch_scale = randf_range(0.9, 1.1)
+		$EnemySFX.play()
 
 func _physics_process(_delta):
 	move_and_slide()
@@ -46,4 +56,6 @@ func _on_hurtbox_hit(other):
 	hp = hp - other.damage
 	var state : State = $StateMachine.current_state
 	velocity = direction.normalized() * KNOCKBACK
+	$EnemySFXhit.pitch_scale = randf_range(0.9, 1.1)
+	$EnemySFXhit.play()
 	state.emit_signal("transition", "Stagger")

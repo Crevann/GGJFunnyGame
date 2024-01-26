@@ -1,9 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=29 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
 [ext_resource type="Script" path="res://camera.gd" id="1_ye6ox"]
 [ext_resource type="Script" path="res://game_controller.gd" id="1_ysptn"]
+[ext_resource type="AudioStream" uid="uid://cgyoel6yw57i4" path="res://sfx/big_slap.ogg" id="3_2cdk4"]
+[ext_resource type="AudioStream" uid="uid://cnexxx0mrorm6" path="res://sfx/laughter1.ogg" id="4_qy0lv"]
 [ext_resource type="Texture2D" uid="uid://6f4xgxpygib0" path="res://sprites/props/crepe.png" id="5_wiiq7"]
 [ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
 [ext_resource type="PackedScene" uid="uid://ldnj5jjy1leg" path="res://logic/spawner.tscn" id="6_n8ywu"]
@@ -15,7 +17,7 @@
 
 [sub_resource type="Animation" id="Animation_vbr7g"]
 resource_name = "Intro"
-length = 5.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +25,7 @@ tracks/0/path = NodePath("UI:offset")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(4.3, 4.8, 5),
+"times": PackedFloat32Array(5.3, 5.8, 6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -250), Vector2(0, 50), Vector2(0, 0)]
@@ -35,7 +37,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5),
+"times": PackedFloat32Array(6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -109,10 +111,10 @@ tracks/7/path = NodePath("YSortables/Player/Flip/Protagonist:animation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(1.1, 4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.1, 4, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [&"Jump", &"Idle"]
+"values": [&"Jump", &"Laugh", &"Idle"]
 }
 tracks/8/type = "method"
 tracks/8/imported = false
@@ -121,7 +123,7 @@ tracks/8/path = NodePath("YSortables/Player")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(5),
+"times": PackedFloat32Array(6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -149,10 +151,10 @@ tracks/10/path = NodePath("YSortables/Player/Flip/Protagonist:frame")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(1.1, 2.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.1, 2.6, 4, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 0, 0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -166,6 +168,25 @@ tracks/11/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AudioStreamPlayer2D")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_2cdk4")
+}, {
+"end_offset": 1.2388,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}],
+"times": PackedFloat32Array(2.7, 4)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kab3p"]
 length = 0.001
@@ -366,6 +387,9 @@ transform = Transform2D(1, 0, 0, 1, 0, -250)
 libraries = {
 "": SubResource("AnimationLibrary_ar254")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -192)
