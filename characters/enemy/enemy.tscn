@@ -340,8 +340,8 @@ sprite_frames = ExtResource("2_wjy1t")
 animation = &"Idle"
 
 [node name="HitEffect" type="AnimatedSprite2D" parent="Flip"]
-modulate = Color(1, 1, 0, 1)
-position = Vector2(-40, 1)
+modulate = Color(0.85098, 0.901961, 1, 1)
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_4re0a")
 frame = 4
 frame_progress = 1.0
