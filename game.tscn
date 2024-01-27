@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=60 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -16,10 +16,13 @@
 [ext_resource type="AudioStream" uid="uid://6hm7rm1nqixl" path="res://sfx/crowd_laugh3.ogg" id="5_nkoqm"]
 [ext_resource type="Texture2D" uid="uid://6f4xgxpygib0" path="res://sprites/props/crepe.png" id="5_wiiq7"]
 [ext_resource type="AudioStream" uid="uid://d111sqpbotrn6" path="res://music/music_game.mp3" id="6_3xhvf"]
+[ext_resource type="Texture2D" uid="uid://bova5l4u0vuj3" path="res://logo/goober_volpe.png" id="6_eo0rt"]
 [ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
 [ext_resource type="AudioStream" uid="uid://c34wbmgeaaj7l" path="res://music/music_cutscene.mp3" id="6_lhhbv"]
 [ext_resource type="PackedScene" uid="uid://ldnj5jjy1leg" path="res://logic/spawner.tscn" id="6_n8ywu"]
 [ext_resource type="Texture2D" uid="uid://dna4l74s70e2n" path="res://sprites/controls/move1.png" id="7_17ed6"]
+[ext_resource type="Texture2D" uid="uid://buk1wl1ifw340" path="res://logo/goober_corvo.png" id="7_ebgmb"]
+[ext_resource type="Texture2D" uid="uid://c07e140u1fn3g" path="res://logo/goober_gatto.png" id="8_g7i3h"]
 [ext_resource type="Texture2D" uid="uid://chnhl8xiigv5e" path="res://sprites/controls/move2.png" id="8_kxrck"]
 [ext_resource type="LabelSettings" uid="uid://bb4i6v7udkj6q" path="res://logic/ui/text.tres" id="9_aa27t"]
 [ext_resource type="Texture2D" uid="uid://p3att4ydrgy" path="res://sprites/controls/attack1.png" id="9_i8uis"]
@@ -53,6 +56,75 @@ font_size = 48
 font_color = Color(1, 1, 0, 1)
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q74le"]
+font = ExtResource("18_xw4tq")
+font_size = 26
+font_color = Color(1, 1, 0, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7dk3s"]
+resource_name = "Default"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_6pv28"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ixml"]
+_data = {
+"Default": SubResource("Animation_7dk3s"),
+"RESET": SubResource("Animation_6pv28")
+}
 
 [sub_resource type="Animation" id="Animation_e260d"]
 resource_name = "Ending"
@@ -356,6 +428,32 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("GameOverUI/Control:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(10.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/22/type = "method"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("GameOverUI/Control/AnimationPlayer")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(10.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Default", -1, 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xlavi"]
@@ -889,6 +987,18 @@ tracks/24/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
 }
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("GameOverUI/Control:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_shnrq"]
 resource_name = "Restart"
@@ -1052,8 +1162,116 @@ label_settings = SubResource("LabelSettings_qbm7a")
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="Control" type="Control" parent="GameOverUI"]
+visible = false
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -56.0
+offset_right = 20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Credits1" type="Label" parent="GameOverUI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -200.0
+offset_right = 118.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Made by Goobers
+
+Stefano Canavesi
+Nicolas Pellarini 
+Claudiu Iaru"
+label_settings = SubResource("LabelSettings_q74le")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Goober1" type="TextureRect" parent="GameOverUI/Control/Credits1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.904348
+anchor_top = 0.427808
+anchor_right = 0.904348
+anchor_bottom = 0.427808
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_eo0rt")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Goober2" type="TextureRect" parent="GameOverUI/Control/Credits1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0347826
+anchor_top = 0.641711
+anchor_right = -0.0347826
+anchor_bottom = 0.641711
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_ebgmb")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Goober3" type="TextureRect" parent="GameOverUI/Control/Credits1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.855615
+anchor_right = 0.8
+anchor_bottom = 0.855615
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_g7i3h")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Credits2" type="Label" parent="GameOverUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -200.0
+offset_right = 118.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "SFX and Music:
+
+Sr. Pelo
+Zapsplat.com
+OpenMusicList"
+label_settings = SubResource("LabelSettings_q74le")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOverUI/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_5ixml")
+}
+
 [node name="Fade" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Fade"]
 anchors_preset = 15

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5yru7qbtkm6n"]
+[gd_scene load_steps=17 format=3 uid="uid://c5yru7qbtkm6n"]
 
 [ext_resource type="Texture2D" uid="uid://dos1f8tt0nt5i" path="res://sprites/cutscene/box1.png" id="1_2nkx2"]
 [ext_resource type="Script" path="res://cutscene.gd" id="1_r57l6"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cnexxx0mrorm6" path="res://sfx/laughter1.ogg" id="6_w4x6c"]
 [ext_resource type="AudioStream" uid="uid://c34wbmgeaaj7l" path="res://music/music_cutscene.mp3" id="7_w882w"]
 [ext_resource type="Texture2D" uid="uid://d0brmblbqmc2h" path="res://logo/logo_goobers.png" id="8_sagw4"]
+[ext_resource type="FontFile" uid="uid://cxnv811rc6rs" path="res://fonts/Wigglye.ttf" id="9_gbfk2"]
 
 [sub_resource type="Animation" id="Animation_58b7r"]
 resource_name = "Default"
@@ -177,6 +178,10 @@ _data = {
 "RESET": SubResource("Animation_aswtg")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_ccsgp"]
+font = ExtResource("9_gbfk2")
+font_size = 128
+
 [sub_resource type="LabelSettings" id="LabelSettings_xoipm"]
 font = ExtResource("6_tr2gx")
 font_size = 32
@@ -227,6 +232,22 @@ grow_vertical = 2
 texture = ExtResource("8_sagw4")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Logo"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -131.5
+offset_right = 198.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "GOOBERS"
+label_settings = SubResource("LabelSettings_ccsgp")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 3
