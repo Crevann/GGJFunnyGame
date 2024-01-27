@@ -14,7 +14,7 @@ var combo_decay_timer: Timer
 var combo_decay_time: float = 1
 
 var game_timer: Timer
-var game_time: float = 10
+var game_time: float = 5
 
 var current_alive_enemies = 0
 var max_enemies_alive = 30
@@ -53,6 +53,7 @@ func start_game():
 	print("Game has started")
 	game_started = true
 	game_timer.start()
+	total_points = 0
 	emit_signal("start")
 	
 

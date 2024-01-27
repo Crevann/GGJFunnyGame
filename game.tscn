@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=52 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -7,8 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://dk3pfirro7hwy" path="res://sfx/crowd_laugh1.ogg" id="3_0loxm"]
 [ext_resource type="AudioStream" uid="uid://byvnc5k0xcp7i" path="res://sfx/whistle.ogg" id="3_ak850"]
 [ext_resource type="AudioStream" uid="uid://d2ag74wassdgj" path="res://sfx/wood_crunch.ogg" id="4_1kc0k"]
+[ext_resource type="FontFile" uid="uid://kqqjk2s1ju5v" path="res://fonts/Chomiqyfreeversion-Regular.ttf" id="4_2i5bd"]
 [ext_resource type="AudioStream" uid="uid://dkudur0sr0won" path="res://sfx/loud_gasp.ogg" id="4_ghyrf"]
 [ext_resource type="AudioStream" uid="uid://ddlrdcvnyqvkn" path="res://sfx/crowd_laugh2.ogg" id="4_m4fra"]
+[ext_resource type="Script" path="res://get_end_score.gd" id="4_mqe6h"]
 [ext_resource type="AudioStream" uid="uid://cnexxx0mrorm6" path="res://sfx/laughter1.ogg" id="4_qy0lv"]
 [ext_resource type="AudioStream" uid="uid://cnhfejuykj3qt" path="res://sfx/boom.ogg" id="5_ku8b0"]
 [ext_resource type="AudioStream" uid="uid://6hm7rm1nqixl" path="res://sfx/crowd_laugh3.ogg" id="5_nkoqm"]
@@ -30,9 +32,30 @@
 [ext_resource type="FontFile" uid="uid://dqvieq6dci2sl" path="res://fonts/YIKES.TTF" id="18_xw4tq"]
 [ext_resource type="Texture2D" uid="uid://xxsk3did81jc" path="res://debug/enviroment/stage_arena_mask.png" id="21_ccrp7"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_u0ecc"]
+font = ExtResource("18_xw4tq")
+font_size = 78
+font_color = Color(1, 1, 0, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6np8"]
+font = ExtResource("4_2i5bd")
+font_size = 64
+font_color = Color(1, 1, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbm7a"]
+font = ExtResource("18_xw4tq")
+font_size = 48
+font_color = Color(1, 1, 0, 1)
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_e260d"]
 resource_name = "Ending"
-length = 10.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -272,6 +295,66 @@ tracks/15/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-40.0, 0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("GameOverUI:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(9.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("GameOverUI/Text:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(9.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("GameOverUI/Score:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(9.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("GameOverUI/Restart:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".:game_can_restart")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vbr7g"]
@@ -705,12 +788,132 @@ tracks/18/keys = {
 "update": 0,
 "values": [-20.0]
 }
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("GameOverUI/Score:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("GameOverUI/Text:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("GameOverUI/Restart:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("GameOverUI:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath(".:game_can_restart")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Fade/ColorRect:color")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xlavi"]
+resource_name = "Fade_in"
+length = 0.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade/ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_shnrq"]
+resource_name = "Restart"
+length = 0.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade/ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"game_restart"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ar254"]
 _data = {
 "Ending": SubResource("Animation_e260d"),
+"Fade_in": SubResource("Animation_xlavi"),
 "Intro": SubResource("Animation_vbr7g"),
-"RESET": SubResource("Animation_kab3p")
+"RESET": SubResource("Animation_kab3p"),
+"Restart": SubResource("Animation_shnrq")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y51cn"]
@@ -769,6 +972,7 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_xvgb4"]
 font = ExtResource("18_xw4tq")
 font_size = 32
+font_color = Color(1, 1, 0, 1)
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
@@ -778,6 +982,73 @@ script = ExtResource("1_ysptn")
 [node name="UI" parent="." instance=ExtResource("1_v0yu5")]
 offset = Vector2(0, -250)
 transform = Transform2D(1, 0, 0, 1, 0, -250)
+
+[node name="GameOverUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Text" type="Label" parent="GameOverUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -280.0
+offset_right = 170.0
+offset_bottom = -196.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your Score:"
+label_settings = SubResource("LabelSettings_u0ecc")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="GameOverUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -198.0
+offset_right = 93.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00000"
+label_settings = SubResource("LabelSettings_k6np8")
+horizontal_alignment = 1
+script = ExtResource("4_mqe6h")
+
+[node name="Restart" type="Label" parent="GameOverUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -497.5
+offset_top = 64.0
+offset_right = 508.5
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press SLAP to restart or ESCAPE to quit"
+label_settings = SubResource("LabelSettings_qbm7a")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Fade" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="Fade"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -820,6 +1091,8 @@ position = Vector2(0, -328)
 
 [node name="Explosion" type="AnimatedSprite2D" parent="YSortables/Player"]
 visible = false
+z_index = 10
+z_as_relative = false
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("9_mrrw0")
 animation = &"Explosion"
