@@ -50,6 +50,7 @@ func on_game_end():
 	state.emit_signal("transition", "Dead")
 
 func _on_hurtbox_hit(other):
+	$Flip/HitEffect.play("default")
 	var direction = global_position - other.global_position
 	Game.hit_stop(0.1, 0.15)
 	camera.shake_camera(0.1, 50)
