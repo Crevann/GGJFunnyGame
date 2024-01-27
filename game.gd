@@ -54,6 +54,7 @@ func start_game():
 	game_started = true
 	game_timer.start()
 	total_points = 0
+	current_alive_enemies = 0
 	emit_signal("start")
 	
 
