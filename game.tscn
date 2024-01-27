@@ -1,12 +1,17 @@
-[gd_scene load_steps=39 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=44 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
 [ext_resource type="Script" path="res://camera.gd" id="1_ye6ox"]
 [ext_resource type="Script" path="res://game_controller.gd" id="1_ysptn"]
+[ext_resource type="AudioStream" uid="uid://dk3pfirro7hwy" path="res://sfx/crowd_laugh1.ogg" id="3_0loxm"]
 [ext_resource type="AudioStream" uid="uid://byvnc5k0xcp7i" path="res://sfx/whistle.ogg" id="3_ak850"]
 [ext_resource type="AudioStream" uid="uid://d2ag74wassdgj" path="res://sfx/wood_crunch.ogg" id="4_1kc0k"]
+[ext_resource type="AudioStream" uid="uid://dkudur0sr0won" path="res://sfx/loud_gasp.ogg" id="4_ghyrf"]
+[ext_resource type="AudioStream" uid="uid://ddlrdcvnyqvkn" path="res://sfx/crowd_laugh2.ogg" id="4_m4fra"]
 [ext_resource type="AudioStream" uid="uid://cnexxx0mrorm6" path="res://sfx/laughter1.ogg" id="4_qy0lv"]
+[ext_resource type="AudioStream" uid="uid://cnhfejuykj3qt" path="res://sfx/boom.ogg" id="5_ku8b0"]
+[ext_resource type="AudioStream" uid="uid://6hm7rm1nqixl" path="res://sfx/crowd_laugh3.ogg" id="5_nkoqm"]
 [ext_resource type="Texture2D" uid="uid://6f4xgxpygib0" path="res://sprites/props/crepe.png" id="5_wiiq7"]
 [ext_resource type="AudioStream" uid="uid://d111sqpbotrn6" path="res://music/music_game.mp3" id="6_3xhvf"]
 [ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
@@ -26,7 +31,8 @@
 
 [sub_resource type="Animation" id="Animation_e260d"]
 resource_name = "Ending"
-length = 8.50001
+length = 9.00001
+step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,7 +76,7 @@ tracks/3/path = NodePath("YSortables/Player/Flip/Protagonist:animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2, 6.8),
+"times": PackedFloat32Array(2, 7.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [&"Ending_Laugh", &"Skeleton"]
@@ -82,10 +88,10 @@ tracks/4/path = NodePath("YSortables/Player/Flip/Protagonist:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.4, 6.6, 6.7, 6.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.06667, 5.13333, 5.2, 5.26667, 5.33333, 5.4, 5.46667, 5.53333, 5.6, 5.66667, 5.73333, 5.8, 5.86667, 5.93333, 6, 6.06667, 6.13333, 6.2, 6.3, 6.4, 6.5, 6.7, 6.9, 7.1, 7.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 6, 7, 8, 6, 7, 8, 9, 10, 11, 12, 0]
+"values": [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 7, 8, 9, 10, 11, 12, 0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -94,10 +100,10 @@ tracks/5/path = NodePath("YSortables/Player/Flip/Protagonist:flip_h")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.9, 3.8, 4.7, 5.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2.9, 3.8, 4.4, 5, 5.6, 6.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false]
+"values": [false, true, false, true, false, true, false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -106,7 +112,7 @@ tracks/6/path = NodePath("YSortables/Player/Explosion:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3),
+"times": PackedFloat32Array(7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
@@ -118,7 +124,7 @@ tracks/7/path = NodePath("YSortables/Player/Explosion:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(6.8, 8.4),
+"times": PackedFloat32Array(7.2, 8.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -130,11 +136,107 @@ tracks/8/path = NodePath("YSortables/Player/Explosion:animation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(6.8),
+"times": PackedFloat32Array(7.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"Explosion"]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LaughSFX")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 0.236,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 1.4635,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 1.4635,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 1.4635,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 1.4635,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 1.4635,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 1.4635,
+"start_offset": 0.0,
+"stream": ExtResource("4_qy0lv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_ghyrf")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ku8b0")
+}],
+"times": PackedFloat32Array(2, 3.6, 5, 5.2, 5.4, 5.6, 5.8, 6, 6.2, 7.2)
+}
+tracks/9/use_blend = true
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Crowd1SFX")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 2.91,
+"start_offset": 0.0,
+"stream": ExtResource("3_0loxm")
+}],
+"times": PackedFloat32Array(3.8)
+}
+tracks/10/use_blend = true
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Crowd1SFX2")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 7.0473,
+"start_offset": 0.0,
+"stream": ExtResource("4_m4fra")
+}],
+"times": PackedFloat32Array(4.4)
+}
+tracks/11/use_blend = true
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Crowd1SFX3")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 5.3385,
+"start_offset": 0.0,
+"stream": ExtResource("5_nkoqm")
+}],
+"times": PackedFloat32Array(5)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="Animation" id="Animation_vbr7g"]
 resource_name = "Intro"
@@ -625,6 +727,14 @@ libraries = {
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
 volume_db = 2.0
 
+[node name="LaughSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Crowd1SFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Crowd1SFX2" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Crowd1SFX3" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_3xhvf")
 
@@ -780,6 +890,7 @@ position = Vector2(832, 128)
 position = Vector2(2, 128)
 
 [node name="Tutorial" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = -384.0
