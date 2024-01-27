@@ -19,13 +19,10 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	
 	if(Input.is_action_just_pressed("quit")):
-		pass
+		get_tree().quit()
 
 func game_start():
 	Game.start_game()
 
 func game_end():
 	$AnimationPlayer.play("Ending")
-
-func game_restart():
-	get_tree().quit()

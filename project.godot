@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="GGJFunnyGame"
-run/main_scene="res://game.tscn"
+config/name="Who's Laughing Now?"
+run/main_scene="res://cutscene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/show_image=false
 config/icon="res://logic/ui/ui_sprites/ritratto_mezzo_insano1.png"
