@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=45 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://6f4xgxpygib0" path="res://sprites/props/crepe.png" id="5_wiiq7"]
 [ext_resource type="AudioStream" uid="uid://d111sqpbotrn6" path="res://music/music_game.mp3" id="6_3xhvf"]
 [ext_resource type="Texture2D" uid="uid://dfb214moyitdu" path="res://debug/enviroment/stage_arena.png" id="6_ewjuq"]
+[ext_resource type="AudioStream" uid="uid://c34wbmgeaaj7l" path="res://music/music_cutscene.mp3" id="6_lhhbv"]
 [ext_resource type="PackedScene" uid="uid://ldnj5jjy1leg" path="res://logic/spawner.tscn" id="6_n8ywu"]
 [ext_resource type="Texture2D" uid="uid://dna4l74s70e2n" path="res://sprites/controls/move1.png" id="7_17ed6"]
 [ext_resource type="Texture2D" uid="uid://chnhl8xiigv5e" path="res://sprites/controls/move2.png" id="8_kxrck"]
@@ -31,8 +32,7 @@
 
 [sub_resource type="Animation" id="Animation_e260d"]
 resource_name = "Ending"
-length = 9.00001
-step = 0.0666667
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,10 +64,10 @@ tracks/2/path = NodePath("Music:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 2, 9.2, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -80.0]
+"values": [0.0, -80.0, -80.0, -25.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -200,11 +200,11 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "clips": [{
-"end_offset": 2.91,
+"end_offset": 1.1029,
 "start_offset": 0.0,
 "stream": ExtResource("3_0loxm")
 }],
-"times": PackedFloat32Array(3.8)
+"times": PackedFloat32Array(2)
 }
 tracks/10/use_blend = true
 tracks/11/type = "audio"
@@ -237,6 +237,42 @@ tracks/12/keys = {
 "times": PackedFloat32Array(5)
 }
 tracks/12/use_blend = true
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Music:stream")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(9.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_lhhbv")]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Music:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(9.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Crowd1SFX:volume_db")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(2, 3.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-40.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_vbr7g"]
 resource_name = "Intro"
@@ -645,6 +681,30 @@ tracks/16/keys = {
 "update": 1,
 "values": [&"Explosion"]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Music:stream")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_3xhvf")]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Crowd1SFX:volume_db")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ar254"]
 _data = {
@@ -730,6 +790,7 @@ volume_db = 2.0
 [node name="LaughSFX" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Crowd1SFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = -20.0
 
 [node name="Crowd1SFX2" type="AudioStreamPlayer2D" parent="."]
 
@@ -890,7 +951,6 @@ position = Vector2(832, 128)
 position = Vector2(2, 128)
 
 [node name="Tutorial" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = -384.0
