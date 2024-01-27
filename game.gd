@@ -14,7 +14,7 @@ var combo_decay_timer: Timer
 var combo_decay_time: float = 1
 
 var game_timer: Timer
-var game_time: float = 5
+var game_time: float = 60
 
 var current_alive_enemies = 0
 var max_enemies_alive = 30
