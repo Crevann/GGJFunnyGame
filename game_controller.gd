@@ -19,7 +19,7 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	
 	if(Input.is_action_just_pressed("quit")):
-		get_tree().quit()
+		get_tree().quit() 
 
 func game_start():
 	Game.start_game()

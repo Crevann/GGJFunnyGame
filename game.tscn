@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=65 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://dgyyv2s3ojt0q" path="res://characters/props/table.tscn" id="16_xrvjl"]
 [ext_resource type="FontFile" uid="uid://dqvieq6dci2sl" path="res://fonts/YIKES.TTF" id="18_xw4tq"]
 [ext_resource type="Texture2D" uid="uid://xxsk3did81jc" path="res://debug/enviroment/stage_arena_mask.png" id="21_ccrp7"]
+[ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="24_v05v1"]
+[ext_resource type="Script" path="res://easter_egg.gd" id="25_a2eba"]
 [ext_resource type="Texture2D" uid="uid://chliw18sfbxum" path="res://sprites/title/title.png" id="26_n5esq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u0ecc"]
@@ -1039,6 +1041,56 @@ _data = {
 "Restart": SubResource("Animation_shnrq")
 }
 
+[sub_resource type="Animation" id="Animation_7hr2g"]
+resource_name = "Default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Creatura:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 2, 0.353553),
+"update": 0,
+"values": [Vector2(65, 0), Vector2(65, 0), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Creatura")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"random_appear"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_egri2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Creatura:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(65, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ce0v3"]
+_data = {
+"Default": SubResource("Animation_7hr2g"),
+"RESET": SubResource("Animation_egri2")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y51cn"]
 size = Vector2(144, 224)
 
@@ -1370,6 +1422,19 @@ position = Vector2(-864, 320)
 [node name="Jukebox" parent="YSortables" instance=ExtResource("16_xrvjl")]
 position = Vector2(-744, -264)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSortables/Jukebox"]
+libraries = {
+"": SubResource("AnimationLibrary_ce0v3")
+}
+autoplay = "Default"
+
+[node name="Creatura" type="Sprite2D" parent="YSortables/Jukebox"]
+z_index = -1
+position = Vector2(65, 0)
+texture = ExtResource("24_v05v1")
+script = ExtResource("25_a2eba")
+chance = 10
+
 [node name="Sprite2D" parent="YSortables/Jukebox/Flip" index="0"]
 position = Vector2(0, -52)
 scale = Vector2(0.4, 0.4)
@@ -1379,7 +1444,7 @@ texture = ExtResource("11_kunjp")
 position = Vector2(-2, -52)
 shape = SubResource("RectangleShape2D_y51cn")
 
-[node name="Shadow" parent="YSortables/Jukebox" index="1"]
+[node name="Shadow" parent="YSortables/Jukebox" index="3"]
 position = Vector2(0, 64)
 scale = Vector2(1.28, 1.28)
 
