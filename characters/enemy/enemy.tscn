@@ -1,10 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://css4dbko0a408"]
+[gd_scene load_steps=25 format=3 uid="uid://css4dbko0a408"]
 
 [ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_baok1"]
 [ext_resource type="SpriteFrames" uid="uid://5ca7lk3if7p2" path="res://characters/enemy/enemy_frames.tres" id="2_wjy1t"]
+[ext_resource type="Texture2D" uid="uid://ciibmcfiexvse" path="res://sprites/hit/hit1.png" id="3_2ipvm"]
 [ext_resource type="Script" path="res://logic/hit_detection/hurtbox.gd" id="3_n4joy"]
+[ext_resource type="Texture2D" uid="uid://bvsnfp5ow80wr" path="res://sprites/hit/hit2.png" id="4_7suow"]
 [ext_resource type="Script" path="res://state_machine.gd" id="4_mskf1"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_panic.gd" id="5_467qv"]
+[ext_resource type="Texture2D" uid="uid://qjt2swda7wcp" path="res://sprites/hit/hit3.png" id="5_q2ubk"]
+[ext_resource type="Texture2D" uid="uid://doeor20xrvxcw" path="res://sprites/hit/hit4.png" id="6_bhw5h"]
 [ext_resource type="AudioStream" uid="uid://oewi4t0bcbuk" path="res://sfx/baby_slap.ogg" id="9_cojao"]
 [ext_resource type="Texture2D" uid="uid://cpqh5usv3x4fk" path="res://sprites/shadow/shadow.png" id="9_vcwtl"]
 [ext_resource type="Script" path="res://characters/enemy/states/enemy_stagger.gd" id="10_p8vnk"]
@@ -30,6 +34,29 @@ void fragment(){
 resource_local_to_scene = true
 shader = SubResource("Shader_o78br")
 shader_parameter/white_progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4re0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2ipvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7suow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q2ubk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bhw5h")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unsea"]
 size = Vector2(92, 105)
@@ -311,6 +338,13 @@ material = SubResource("ShaderMaterial_vvioa")
 position = Vector2(0, -36)
 sprite_frames = ExtResource("2_wjy1t")
 animation = &"Idle"
+
+[node name="HitEffect" type="AnimatedSprite2D" parent="Flip"]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(-40, 1)
+sprite_frames = SubResource("SpriteFrames_4re0a")
+frame = 4
+frame_progress = 1.0
 
 [node name="Hurtbox" type="Area2D" parent="Flip"]
 position = Vector2(2, 0)
