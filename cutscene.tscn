@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dos1f8tt0nt5i" path="res://sprites/cutscene/box1.png" id="1_2nkx2"]
 [ext_resource type="Script" path="res://cutscene.gd" id="1_r57l6"]
-[ext_resource type="Texture2D" uid="uid://cqexvxqts0fgy" path="res://debug/Creatura2.png" id="2_jw55v"]
 [ext_resource type="Texture2D" uid="uid://bpa4u5ndo2v0b" path="res://sprites/cutscene/box2.png" id="2_w3lhx"]
 [ext_resource type="Texture2D" uid="uid://bv2vy72odjc4c" path="res://sprites/cutscene/box3.png" id="3_cdgu3"]
 [ext_resource type="Texture2D" uid="uid://cn7314t1u8c20" path="res://sprites/cutscene/box4.png" id="4_gbtaw"]
@@ -10,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dqvieq6dci2sl" path="res://fonts/YIKES.TTF" id="6_tr2gx"]
 [ext_resource type="AudioStream" uid="uid://cnexxx0mrorm6" path="res://sfx/laughter1.ogg" id="6_w4x6c"]
 [ext_resource type="AudioStream" uid="uid://c34wbmgeaaj7l" path="res://music/music_cutscene.mp3" id="7_w882w"]
+[ext_resource type="Texture2D" uid="uid://d0brmblbqmc2h" path="res://logo/logo_goobers.png" id="8_sagw4"]
 
 [sub_resource type="Animation" id="Animation_58b7r"]
 resource_name = "Default"
@@ -218,13 +218,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = -56.5
-offset_right = 46.5
-offset_bottom = 56.5
+offset_left = -257.0
+offset_top = -259.5
+offset_right = 257.0
+offset_bottom = 259.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jw55v")
+texture = ExtResource("8_sagw4")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 3

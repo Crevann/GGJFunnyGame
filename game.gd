@@ -11,7 +11,7 @@ var max_combo: int = 4
 var game_started: bool
 
 var combo_decay_timer: Timer
-var combo_decay_time: float = 1
+var combo_decay_time: float = 0.7
 
 var game_timer: Timer
 var game_time: float = 60

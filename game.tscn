@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bthd4sme5od7a"]
+[gd_scene load_steps=53 format=3 uid="uid://bthd4sme5od7a"]
 
 [ext_resource type="PackedScene" uid="uid://cx1djja02jtll" path="res://characters/player/player.tscn" id="1_nw3lk"]
 [ext_resource type="PackedScene" uid="uid://bo7k1cc6j2s0q" path="res://logic/ui/ui.tscn" id="1_v0yu5"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dgyyv2s3ojt0q" path="res://characters/props/table.tscn" id="16_xrvjl"]
 [ext_resource type="FontFile" uid="uid://dqvieq6dci2sl" path="res://fonts/YIKES.TTF" id="18_xw4tq"]
 [ext_resource type="Texture2D" uid="uid://xxsk3did81jc" path="res://debug/enviroment/stage_arena_mask.png" id="21_ccrp7"]
+[ext_resource type="Texture2D" uid="uid://chliw18sfbxum" path="res://sprites/title/title.png" id="26_n5esq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u0ecc"]
 font = ExtResource("18_xw4tq")
@@ -1241,8 +1242,13 @@ anchors_preset = 0
 offset_top = -384.0
 offset_bottom = -384.0
 
+[node name="Title" type="Sprite2D" parent="Tutorial"]
+position = Vector2(0, -280)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("26_n5esq")
+
 [node name="Move" type="AnimatedSprite2D" parent="Tutorial"]
-position = Vector2(-240, -56)
+position = Vector2(-240, 3.5)
 sprite_frames = SubResource("SpriteFrames_haqvq")
 autoplay = "default"
 frame_progress = 0.223835
@@ -1257,7 +1263,7 @@ label_settings = ExtResource("9_aa27t")
 horizontal_alignment = 1
 
 [node name="Attack" type="AnimatedSprite2D" parent="Tutorial"]
-position = Vector2(240, -56)
+position = Vector2(240, 3.5)
 sprite_frames = SubResource("SpriteFrames_8ftd6")
 autoplay = "default"
 frame_progress = 0.939989
